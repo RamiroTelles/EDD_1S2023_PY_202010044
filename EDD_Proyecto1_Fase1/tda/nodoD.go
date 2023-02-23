@@ -41,3 +41,19 @@ func (this *nodoD) SetCarnet(carnet int) {
 func (this *nodoD) SetContrasena(contrasena string) {
 	this.contrasena = contrasena
 }
+
+func (nodo *nodoD) getSiguiente() *nodoD {
+	return nodo.siguiente
+}
+
+func (nodo *nodoD) getAnterior() *nodoD {
+	return nodo.anterior
+}
+
+func (nodo *nodoD) setSiguiente(sig *nodoD) {
+	nodo.siguiente = sig
+}
+
+func (nodo *nodoD) setAnterior(ant *nodoD) {
+	nodo.anterior = ant
+}
