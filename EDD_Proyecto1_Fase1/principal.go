@@ -2,83 +2,139 @@ package main
 
 import (
 	"Proyecto1/EDD_Proyecto1_Fase1/tda"
-
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 )
 
 //import ("fmt"
 //		"./tda")
 
-//import ("fmt")
+// import ("fmt")
+var l1 tda.ListaDoble
 
 func main() {
-	l1 := tda.ListaDoble{Cabeza: nil, Vacio: true}
-
-	p1 := tda.Pila{Tope: nil, Vacio: true}
-
-	q1 := tda.Queue{Cabeza: nil, Vacio: true}
+	//l1 := tda.ListaDoble{Cabeza: nil, Vacio: true, Cant: 0}
 
 	l1.InsertarO("Ramiro", "Agustín", 5, "contrasena")
 	l1.InsertarO("Orinar", "comodin", 4, "algodificildeadivinar")
 	l1.InsertarO("juan", "guarnizo", 2, "qwety1234")
 	l1.InsertarO("benito", "camelo", 3, "aquenotelasabesweyjsjsjsjsjs")
 	l1.InsertarO("sova", "gina", 1, "adivinaesta")
+	//y := l1.BusquedaBinaria(5)
 
-	l1.Imprimir()
+	//fmt.Printf("%d", y)
+	//l1.Imprimir()
 
-	fmt.Println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Pila-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-	p1.Push("se ingresó", "12")
-	p1.Push("se abonó", "13")
-	p1.Push("se difamó", "14")
-	p1.Push("se denigró", "15")
-	p1.Push("se ingresó", "16")
+	/* 	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y := l1.Obtener(0)
+	   	fmt.Printf("Nombre: %s %s, carnet: %d, Contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
+	   	fmt.Println("")
+	   	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y = l1.Obtener(1)
+	   	fmt.Printf("Nombre: %s %s, carnet: %d, Contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
+	   	fmt.Println("")
+	   	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y = l1.Obtener(2)
+	   	fmt.Printf("Nombre: %s %s, carnet: %d, Contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
+	   	fmt.Println("")
+	   	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y = l1.Obtener(3)
+	   	fmt.Printf("Nombre: %s %s, carnet: %d, Contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
+	   	fmt.Println("")
+	   	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y = l1.Obtener(4)
+	   	fmt.Printf("Nombre: %s %s, carnet: %d, Contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
+	   	fmt.Println("")
+	   	fmt.Println("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_")
+	   	y = l1.Obtener(-1)
 
-	p1.Imprimir()
+	   	if y == nil {
+	   		fmt.Println("No se encontro")
+	   	}
 
-	fmt.Println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Cola-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-	q1.Encolar("Ramiro", "Agustín", 5, "contrasena")
-	q1.Encolar("Orinar", "comodin", 4, "algodificildeadivinar")
-	q1.Encolar("juan", "guarnizo", 2, "qwety1234")
-	q1.Encolar("benito", "camelo", 3, "aquenotelasabesweyjsjsjsjsjs")
-	q1.Encolar("sova", "gina", 1, "adivinaesta")
+	   	y = l1.Obtener(9)
 
-	q1.Imprimir()
-	fmt.Println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Cola-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-	fmt.Println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Cola-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-	y := q1.Desencolar()
+	   	if y == nil {
+	   		fmt.Println("No se encontro")
+	   	}
+	*/
 
-	fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("")
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
+	//FUNCION MENÚ
+	for {
+		fmt.Println("---------Bienvenido a EDD GO Drive---------")
+		fmt.Println("ELige una opción:")
+		fmt.Println("1.Iniciar sesión")
+		fmt.Println("2.Salir")
+		fmt.Println("-------------------------------------------")
+		reader := bufio.NewReader(os.Stdin)
+		entrada, _ := reader.ReadString('\n')
+		opcion := strings.TrimRight(entrada, "\r\n")
 
-	y = q1.Desencolar()
+		if opcion == "1" {
+			fmt.Print("Ingrese su Carnet:")
+			entrada, _ = reader.ReadString('\n')
+			usuario := strings.TrimRight(entrada, "\r\n")
 
-	fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("")
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
+			fmt.Print("Ingrese su Contraseña:")
+			entrada, _ = reader.ReadString('\n')
+			contra := strings.TrimRight(entrada, "\r\n")
 
-	y = q1.Desencolar()
+			if usuario != "admin" && contra != "admin" {
+				carnet, err := strconv.Atoi(usuario)
 
-	fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("")
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
+				if err != nil {
+					fmt.Println("Carnet no válido")
+					panic(err)
+				}
+				//obtengo la posición del nodo que busco
+				posNodo := l1.BusquedaBinaria(carnet)
+				//obtengo el nodo
+				nodoUsuario := l1.Obtener(posNodo)
+				if nodoUsuario == nil {
+					fmt.Println("Usuario o contraseña incorrecta")
+					continue
+				}
+				if contra == nodoUsuario.GetContra() {
+					fmt.Println("Se ha iniciado sesión")
+					continue
+					//guardar a la pila esta actividad
+				}
+				fmt.Println("Usuario o contraseña incorrecta")
+				continue
 
-	y = q1.Desencolar()
-	fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("")
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
+			}
+			menuAdmin()
+			continue
 
-	y = q1.Desencolar()
-	fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("")
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
+		} else if opcion == "2" {
+			break
+		} else {
+			fmt.Println("Opción no válida")
+		}
+		recover()
+	}
 
-	y = q1.Desencolar()
-	//fmt.Printf("Se desenculó al pisado : %s %s, con carnet: %d ,  y contra: %s", y.GetNombre(), y.GetApellido(), y.GetCarnet(), y.GetContra())
-	fmt.Println("-----------------------------------------------------------------------------------------------------------------------------")
-	fmt.Println("")
-	q1.Encolar("Ramiro", "Agustín", 5, "contrasena")
-	fmt.Println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*Cola-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*")
-	q1.Imprimir()
+}
 
+func menuAdmin() {
+	for {
+		fmt.Println("---------Menú admin EDD GO Drive---------")
+		fmt.Println("ELige una opción:")
+		fmt.Println("1.Ver estudiantes Pendientes")
+		fmt.Println("2.Ver estudiantes del sistema")
+		fmt.Println("3.Registrar nuevo estudiante")
+		fmt.Println("4.Carga Masiva de estudiantes")
+		fmt.Println("5.Salir")
+		fmt.Println("-------------------------------------------")
+		reader := bufio.NewReader(os.Stdin)
+		entrada, _ := reader.ReadString('\n')
+		opcion := strings.TrimRight(entrada, "\r\n")
+
+		switch opcion {
+
+		}
+	}
 }
