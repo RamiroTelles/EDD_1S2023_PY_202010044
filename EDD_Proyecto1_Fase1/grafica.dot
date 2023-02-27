@@ -1,0 +1,16 @@
+digraph l{
+    node[shape=box fillcolor="#FFFFFF" style=filled]
+    label ="Pila Admin"
+    bgcolor= "#398D9C"
+    B1[label="bitácora 1",group =1];
+    B2[label="bitácora 2",group =1];
+    B3[label="bitácora 3",group =1];
+    B4[label="bitácora 4",group =1];
+    B5[label="bitácora 5",group =1];
+
+    B1-> B2
+    B2-> B3
+    B3-> B4
+    B4-> B5
+
+}

@@ -22,6 +22,27 @@ func (lista *Pila) Push(actividad string, fecha string) {
 
 }
 
+func (lista *Pila) ObtenerDatos() []string {
+	var datosPila []string
+	dato := ""
+	if lista.Vacio {
+		fmt.Println("Pila Vacia")
+
+	} else {
+		temp := lista.Tope
+
+		dato = temp.GetActividad() + " " + temp.GetFecha()
+		datosPila = append(datosPila, dato)
+		for temp.getAnterior() != nil {
+			temp = temp.getAnterior()
+			dato = temp.GetActividad() + temp.GetFecha()
+			datosPila = append(datosPila, dato)
+		}
+
+	}
+	return datosPila
+}
+
 func (lista *Pila) Imprimir() {
 
 	if lista.Vacio {

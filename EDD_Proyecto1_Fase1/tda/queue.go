@@ -7,8 +7,12 @@ import (
 // import("nodoD")
 type Queue struct {
 	Cabeza *nodoQ
+	Cant   int
+	Vacio  bool
+}
 
-	Vacio bool
+func (lista *Queue) GetCantidad() int {
+	return lista.Cant
 }
 
 func (lista *Queue) Encolar(nombre string, apellido string, carnet int, contrasena string) {
@@ -17,6 +21,7 @@ func (lista *Queue) Encolar(nombre string, apellido string, carnet int, contrase
 	if lista.Vacio {
 		lista.Cabeza = &nuevo
 		lista.Vacio = false
+
 	} else {
 		temp := lista.Cabeza
 		for temp.getSiguiente() != nil {
@@ -25,7 +30,7 @@ func (lista *Queue) Encolar(nombre string, apellido string, carnet int, contrase
 		temp.setSiguiente(&nuevo)
 
 	}
-
+	lista.Cant++
 }
 
 func (lista *Queue) Desencolar() *nodoQ {
@@ -39,8 +44,13 @@ func (lista *Queue) Desencolar() *nodoQ {
 		if lista.Cabeza == nil {
 			lista.Vacio = true
 		}
+		lista.Cant--
 		return temp
 	}
+}
+
+func (lista *Queue) GetCabeza() *nodoQ {
+	return lista.Cabeza
 }
 
 func (lista *Queue) Imprimir() {

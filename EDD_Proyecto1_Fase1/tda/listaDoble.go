@@ -9,8 +9,9 @@ type ListaDoble struct {
 	Vacio  bool
 }
 
-func (lista *ListaDoble) InsertarF(nombre string, apellido string, carnet int, contrasena string) {
-	nuevo := nodoD{nombre: nombre, apellido: apellido, carnet: carnet, contrasena: contrasena}
+func (lista *ListaDoble) InsertarF(nombre string, apellido string, carnet int, contrasena string, p1 Pila) {
+
+	nuevo := nodoD{nombre: nombre, apellido: apellido, carnet: carnet, contrasena: contrasena, log: p1}
 
 	if lista.Vacio {
 		lista.Cabeza = &nuevo
@@ -47,8 +48,8 @@ func (lista *ListaDoble) Imprimir() {
 	}
 }
 
-func (lista *ListaDoble) InsertarO(nombre string, apellido string, carnet int, contrasena string) {
-	nuevo := nodoD{nombre: nombre, apellido: apellido, carnet: carnet, contrasena: contrasena}
+func (lista *ListaDoble) InsertarO(nombre string, apellido string, carnet int, contrasena string, p1 Pila) {
+	nuevo := nodoD{nombre: nombre, apellido: apellido, carnet: carnet, contrasena: contrasena, log: p1}
 
 	if lista.Vacio {
 		lista.Cabeza = &nuevo

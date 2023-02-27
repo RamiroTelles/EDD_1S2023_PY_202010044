@@ -5,6 +5,7 @@ type nodoD struct {
 	apellido   string
 	carnet     int
 	contrasena string
+	log        Pila
 
 	siguiente *nodoD
 	anterior  *nodoD
@@ -56,4 +57,12 @@ func (nodo *nodoD) setSiguiente(sig *nodoD) {
 
 func (nodo *nodoD) setAnterior(ant *nodoD) {
 	nodo.anterior = ant
+}
+
+func (nodo *nodoD) PushPila(actividad string, fecha string) {
+	nodo.log.Push(actividad, fecha)
+}
+
+func (nodo *nodoD) GetDatosPila() []string {
+	return nodo.log.ObtenerDatos()
 }
