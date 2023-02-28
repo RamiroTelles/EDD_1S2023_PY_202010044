@@ -25,11 +25,11 @@ func main() {
 	//l1 := tda.ListaDoble{Cabeza: nil, Vacio: true, Cant: 0}
 	//l1.Vacio = false
 	var pila1 tda.Pila = tda.Pila{Vacio: true, Tope: nil}
-	l1.InsertarO("Ramiro", "Agustín", 5, "contrasena", pila1)
-	l1.InsertarO("Orinar", "comodin", 4, "algodificildeadivinar", pila1)
-	l1.InsertarO("juan", "guarnizo", 2, "qwety1234", pila1)
-	l1.InsertarO("benito", "camelo", 3, "aquenotelasabesweyjsjsjsjsjs", pila1)
-	l1.InsertarO("sova", "gina", 1, "adivinaesta", pila1)
+	l1.InsertarO("Ramiro", "Agustín", 5, "5", pila1)
+	l1.InsertarO("Orinar", "comodin", 4, "4", pila1)
+	l1.InsertarO("juan", "guarnizo", 2, "2", pila1)
+	l1.InsertarO("benito", "camelo", 3, "3", pila1)
+	l1.InsertarO("sova", "gina", 1, "1", pila1)
 	//y := l1.BusquedaBinaria(5)
 
 	//fmt.Printf("%d", y)
@@ -316,8 +316,20 @@ func menuReportes() {
 
 		if opcion == "1" {
 			//LIsta doblemente enlazada
+			flag := reporteListaDoble()
+			if flag {
+				fmt.Println("No se logró crear el archivo")
+				continue
+			}
+			fmt.Println("Se ha logrado crear el archivo con éxito")
 		} else if opcion == "2" {
 			//cola
+			flag := reporteCola()
+			if flag {
+				fmt.Println("No se logró crear el archivo")
+				continue
+			}
+			fmt.Println("Se ha logrado crear el archivo con éxito")
 		} else if opcion == "3" {
 			//Pila admin
 			flag := reportePilaAdmin()
@@ -356,23 +368,27 @@ func reportePilaAdmin() bool {
 		}
 		txt += "}"
 
-		flag := crearArchivo("reporteAdmin.dot")
+		flag := crearArchivo("admin.dot")
 
 		if flag {
 			fmt.Println("No se pudo Crear el archivo")
 			return true
 		}
 
-		flag = escribirArchivo("reporteAdmin.dot", txt)
+		flag = escribirArchivo("admin.dot", txt)
 
 		if flag {
 			fmt.Println("No se pudo Crear el archivo")
 			return true
 		}
 
-		_, err := exec.Command("dot -Tpng reporteAdmin.dot -o reporteAdmin.png").Output()
+		//_, err := exec.Command("dot -Tpng admin.dot -o admin.png").Output()
+		flag = generarPng("admin.dot", "admin")
 
-		return err != nil
+		/* if err != nil {
+			fmt.Println(err)
+		} */
+		return flag
 
 	}
 
@@ -388,6 +404,15 @@ func crearArchivo(ruta string) bool {
 			return true
 		}
 		defer file.Close()
+	} else {
+		err := os.Remove(ruta)
+		if err == nil {
+			var file, err = os.Create(ruta)
+			if err != nil {
+				fmt.Println(err.Error())
+			}
+			defer file.Close()
+		}
 	}
 	return false
 }
@@ -407,4 +432,160 @@ func escribirArchivo(ruta string, txt string) bool {
 	err = file.Sync()
 
 	return err != nil
+}
+
+func generarPng(ruta string, nombre string) bool {
+	path2, _ := exec.LookPath("dot")
+	_, err := exec.Command(path2, "dot", "-Tpng", ruta, "-o", nombre+".png").Output()
+
+	if err != nil {
+		fmt.Println("Por alguna razón funciona ._.")
+		//fmt.Println(err)
+		//return true
+	}
+	//mode := int(0777)
+	//os.WriteFile(strings.Replace(ruta, ".dot", ".png", -1), cmd, os.FileMode(mode))
+
+	return false
+
+}
+
+func reporteCola() bool {
+	if cola.Vacio {
+		fmt.Println("Cola Vacia")
+		return true
+	} else {
+		//hacer reportes
+		txt := "digraph l{\n node[shape=box fillcolor=\"#FFFFFF\" style=filled]\n label =\"Cola\" \n bgcolor= \"#398D9C\" \n"
+
+		bitacora := cola.ObtenerDatos()
+
+		for i := 0; i < len(bitacora); i++ {
+			txt += "B" + strconv.Itoa(i) + "[label=\"" + bitacora[i] + "\", group=" + strconv.Itoa(i) + "];\n"
+		}
+		txt += "\n"
+
+		for i := 0; i < len(bitacora)-1; i++ {
+			txt += "B" + strconv.Itoa(i) + "-> B" + strconv.Itoa(i+1) + "\n"
+		}
+
+		txt += "\n"
+		txt += "{rank=same;"
+		for i := 0; i < len(bitacora); i++ {
+			txt += "B" + strconv.Itoa(i) + ";"
+		}
+		txt += "};\n"
+
+		txt += "}"
+
+		flag := crearArchivo("cola.dot")
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+
+		flag = escribirArchivo("cola.dot", txt)
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+
+		//_, err := exec.Command("dot -Tpng admin.dot -o admin.png").Output()
+		flag = generarPng("cola.dot", "cola")
+
+		/* if err != nil {
+			fmt.Println(err)
+		} */
+		return flag
+
+	}
+}
+
+func reporteListaDoble() bool {
+	if l1.Vacio {
+		fmt.Println("Lista Vacia")
+		return true
+	} else {
+		//hacer reportes
+		txt := "digraph l{\n node[shape=box fillcolor=\"#FFFFFF\" style=filled]\n label =\"Lista Doble\" \n bgcolor= \"#398D9C\" \n"
+
+		for i := 0; i < l1.Cant; i++ {
+			temp := l1.Obtener(i)
+			dato := strconv.Itoa(temp.GetCarnet()) + "\n" + temp.GetNombre() + " " + temp.GetApellido()
+			txt += "B" + strconv.Itoa(i) + "[label=\"" + dato + "\", group=" + strconv.Itoa(i) + "];\n"
+
+			txt += "\n\n"
+			if temp.IsPilaVacia() {
+				continue
+			}
+			bitacora := temp.GetDatosPila()
+			for j := 0; j < len(bitacora); j++ {
+				txt += "P" + strconv.Itoa(i) + strconv.Itoa(j) + "[label=\"" + bitacora[j] + "\", group=" + strconv.Itoa(i) + "];\n"
+			}
+
+		}
+		txt += "\n\n"
+
+		for i := 0; i < l1.Cant-1; i++ {
+			txt += "B" + strconv.Itoa(i) + "-> B" + strconv.Itoa(i+1) + "\n"
+		}
+
+		txt += "\n\n"
+
+		for i := l1.Cant - 1; i > 0; i-- {
+			txt += "B" + strconv.Itoa(i) + "-> B" + strconv.Itoa(i-1) + "\n"
+		}
+
+		txt += "\n\n"
+
+		for i := 0; i < l1.Cant; i++ {
+			temp := l1.Obtener(i)
+
+			if temp.IsPilaVacia() {
+				continue
+			}
+			bitacora := temp.GetDatosPila()
+			txt += "B" + strconv.Itoa(i) + "-> P" + strconv.Itoa(i) + "0\n"
+			for j := 0; j < len(bitacora)-1; j++ {
+				txt += "P" + strconv.Itoa(i) + strconv.Itoa(j) + " -> P" + strconv.Itoa(i) + strconv.Itoa(j+1) + "\n"
+			}
+
+		}
+
+		txt += "\n\n"
+
+		txt += "\n"
+		txt += "{rank=same;"
+		for i := 0; i < l1.Cant; i++ {
+			txt += "B" + strconv.Itoa(i) + ";"
+		}
+		txt += "};\n"
+
+		txt += "}"
+
+		flag := crearArchivo("lista.dot")
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+
+		flag = escribirArchivo("lista.dot", txt)
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+
+		//_, err := exec.Command("dot -Tpng admin.dot -o admin.png").Output()
+		flag = generarPng("lista.dot", "lista")
+
+		/* if err != nil {
+			fmt.Println(err)
+		} */
+		return flag
+
+	}
 }

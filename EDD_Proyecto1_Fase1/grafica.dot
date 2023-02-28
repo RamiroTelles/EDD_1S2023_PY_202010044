@@ -1,16 +1,41 @@
 digraph l{
     node[shape=box fillcolor="#FFFFFF" style=filled]
+    
     label ="Pila Admin"
     bgcolor= "#398D9C"
     B1[label="bitácora 1",group =1];
-    B2[label="bitácora 2",group =1];
-    B3[label="bitácora 3",group =1];
-    B4[label="bitácora 4",group =1];
-    B5[label="bitácora 5",group =1];
+    B2[label="bitácora 2",group =2];
+    B3[label="bitácora 3",group =3];
+    B4[label="bitácora 4",group =4];
+    B5[label="bitácora 5",group =5];
+
+    P10[label="Pila B1",group =1];
+    P11[label="Pila B1",group =1];
+    P12[label="Pila B1",group =1];
+
+    P20[label="Pila B2",group =2];
+    P21[label="Pila B2",group =2];
+    P22[label="Pila B2",group =2];
 
     B1-> B2
     B2-> B3
     B3-> B4
     B4-> B5
+
+    B2-> B1
+    B3-> B2
+    B4-> B3
+    B5-> B4
+
+    B1->P10
+    P10->P11
+    P11->P12
+
+    B2->P20
+    P20->P21
+    P21->P22
+
+    { rank=same; B1;B2;B3;B4;B5;};
+
 
 }

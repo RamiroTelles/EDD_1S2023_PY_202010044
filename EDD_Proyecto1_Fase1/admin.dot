@@ -1,0 +1,53 @@
+digraph l{
+ node[shape=box fillcolor="#FFFFFF" style=filled]
+ label ="Pila Admin" 
+ bgcolor= "#398D9C" 
+B0[label="Rechazar un Estudiante 27/02/2023 - 18:16:09", group=1];
+B1[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
+B2[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
+B3[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
+B4[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
+B5[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
+B6[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
+B7[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
+B8[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
+B9[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
+B10[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
+B11[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
+B12[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
+B13[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
+B14[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
+B15[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
+B16[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
+B17[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
+B18[label="Rechazar un Estudiante27/02/2023 - 18:16:03", group=1];
+B19[label="Rechazar un Estudiante27/02/2023 - 18:16:03", group=1];
+B20[label="Rechazar un Estudiante27/02/2023 - 18:16:02", group=1];
+B21[label="Rechazar un Estudiante27/02/2023 - 18:16:02", group=1];
+B22[label="Carga Masiva de Estudiantes27/02/2023 - 18:15:55", group=1];
+B23[label="Iniciar Sesión27/02/2023 - 18:15:49", group=1];
+
+B0-> B1
+B1-> B2
+B2-> B3
+B3-> B4
+B4-> B5
+B5-> B6
+B6-> B7
+B7-> B8
+B8-> B9
+B9-> B10
+B10-> B11
+B11-> B12
+B12-> B13
+B13-> B14
+B14-> B15
+B15-> B16
+B16-> B17
+B17-> B18
+B18-> B19
+B19-> B20
+B20-> B21
+B21-> B22
+B22-> B23
+}

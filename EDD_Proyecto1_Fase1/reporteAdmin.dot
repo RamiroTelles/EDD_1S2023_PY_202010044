@@ -1,9 +1,0 @@
-digraph l{
- node[shape=box fillcolor="#FFFFFF" style=filled]
- label ="Pila Admin" 
- bgcolor= "#398D9C" 
-B0[label="Mostrar Estudiantes en el sistema 26/02/2023 - 18:06:28", group=1];
-B1[label="Iniciar Sesión26/02/2023 - 18:06:23", group=1];
-
-B0-> B1
-}

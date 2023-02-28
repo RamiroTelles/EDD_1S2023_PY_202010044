@@ -66,3 +66,7 @@ func (nodo *nodoD) PushPila(actividad string, fecha string) {
 func (nodo *nodoD) GetDatosPila() []string {
 	return nodo.log.ObtenerDatos()
 }
+
+func (nodo *nodoD) IsPilaVacia() bool {
+	return nodo.log.Vacio
+}

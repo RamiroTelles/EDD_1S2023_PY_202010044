@@ -2,6 +2,7 @@ package tda
 
 import (
 	"fmt"
+	"strconv"
 )
 
 // import("nodoD")
@@ -51,6 +52,27 @@ func (lista *Queue) Desencolar() *nodoQ {
 
 func (lista *Queue) GetCabeza() *nodoQ {
 	return lista.Cabeza
+}
+
+func (lista *Queue) ObtenerDatos() []string {
+	var datosPila []string
+	dato := ""
+	if lista.Vacio {
+		fmt.Println("Pila Vacia")
+
+	} else {
+		temp := lista.Cabeza
+
+		dato = strconv.Itoa(temp.GetCarnet()) + "\n" + temp.GetNombre() + " " + temp.GetApellido()
+		datosPila = append(datosPila, dato)
+		for temp.getSiguiente() != nil {
+			temp = temp.getSiguiente()
+			dato = strconv.Itoa(temp.GetCarnet()) + "\n" + temp.GetNombre() + " " + temp.GetApellido()
+			datosPila = append(datosPila, dato)
+		}
+
+	}
+	return datosPila
 }
 
 func (lista *Queue) Imprimir() {

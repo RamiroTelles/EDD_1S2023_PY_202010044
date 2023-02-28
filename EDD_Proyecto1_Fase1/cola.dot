@@ -1,0 +1,67 @@
+digraph l{
+ node[shape=box fillcolor="#FFFFFF" style=filled]
+ label ="Cola" 
+ bgcolor= "#398D9C" 
+B0[label="201700490
+Marvin Castellanos", group=0];
+B1[label="201907608
+Ludwing Lopez", group=1];
+B2[label="201800673
+Sergio Bucaro", group=2];
+B3[label="200819074
+Christian Esquite", group=3];
+B4[label="202001471
+Luis Yaquian", group=4];
+B5[label="202010023
+Luis Lizama", group=5];
+B6[label="201503617
+Olivert Vargas", group=6];
+B7[label="202001800
+José Ibarra", group=7];
+B8[label="202100299
+Mauricio Castro", group=8];
+B9[label="202010810
+Velveth Pérez", group=9];
+B10[label="201222535
+Miguel Sac", group=10];
+B11[label="202111478
+José Panaza", group=11];
+B12[label="201807411
+Pablo Fernández", group=12];
+B13[label="201019694
+Henderson Hernandez", group=13];
+B14[label="202100239
+Aída Mansilla", group=14];
+B15[label="202105561
+Jeser Rodas", group=15];
+B16[label="202104782
+Anthony Zea", group=16];
+B17[label="201902416
+Julio Fernández", group=17];
+B18[label="202004807
+Hugo Giron", group=18];
+B19[label="202109554
+Mario Lopez", group=19];
+
+B0-> B1
+B1-> B2
+B2-> B3
+B3-> B4
+B4-> B5
+B5-> B6
+B6-> B7
+B7-> B8
+B8-> B9
+B9-> B10
+B10-> B11
+B11-> B12
+B12-> B13
+B13-> B14
+B14-> B15
+B15-> B16
+B16-> B17
+B17-> B18
+B18-> B19
+
+{rank=same;B0;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11;B12;B13;B14;B15;B16;B17;B18;B19;};
+}
