@@ -24,12 +24,12 @@ var pilaAdmin tda.Pila = tda.Pila{Tope: nil, Vacio: true}
 func main() {
 	//l1 := tda.ListaDoble{Cabeza: nil, Vacio: true, Cant: 0}
 	//l1.Vacio = false
-	var pila1 tda.Pila = tda.Pila{Vacio: true, Tope: nil}
+	/* var pila1 tda.Pila = tda.Pila{Vacio: true, Tope: nil}
 	l1.InsertarO("Ramiro", "Agustín", 5, "5", pila1)
 	l1.InsertarO("Orinar", "comodin", 4, "4", pila1)
 	l1.InsertarO("juan", "guarnizo", 2, "2", pila1)
 	l1.InsertarO("benito", "camelo", 3, "3", pila1)
-	l1.InsertarO("sova", "gina", 1, "1", pila1)
+	l1.InsertarO("sova", "gina", 1, "1", pila1) */
 	//y := l1.BusquedaBinaria(5)
 
 	//fmt.Printf("%d", y)
@@ -340,6 +340,13 @@ func menuReportes() {
 			fmt.Println("Se ha logrado crear el archivo con éxito")
 		} else if opcion == "4" {
 			//JSON
+			flag := reporteJson()
+			if flag {
+				fmt.Println("No se logró crear el archivo")
+				continue
+			}
+			fmt.Println("Se ha logrado crear el archivo con éxito")
+
 		} else if opcion == "5" {
 			break
 		} else {
@@ -588,4 +595,40 @@ func reporteListaDoble() bool {
 		return flag
 
 	}
+}
+
+func reporteJson() bool {
+	if l1.Vacio {
+		fmt.Println("Lista Vacia")
+		return false
+	} else {
+		txt := "{\n\t \"alumnos\": [\n"
+		for i := 0; i < l1.Cant; i++ {
+
+			temp := l1.Obtener(i)
+			txt += "\t\t{\n\t\t\t\"nombre\": \"" + temp.GetNombre() + " " + temp.GetApellido() + "\",\n"
+			txt += "\t\t\t\"carnet\": " + strconv.Itoa(temp.GetCarnet()) + ",\n"
+			txt += "\t\t\t\"password\": \"" + temp.GetContra() + "\",\n"
+			txt += "\t\t\t\"Carpeta_Raiz\": \"/\""
+			txt += "\n\t\t},\n"
+
+		}
+		txtJson := txt[:len(txt)-2]
+		txtJson += "\n\t]\n}"
+
+		flag := crearArchivo("reporte.json")
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+
+		flag = escribirArchivo("reporte.json", txtJson)
+
+		if flag {
+			fmt.Println("No se pudo Crear el archivo")
+			return true
+		}
+	}
+	return false
 }

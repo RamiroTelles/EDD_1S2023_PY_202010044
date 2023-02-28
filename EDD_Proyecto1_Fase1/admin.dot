@@ -2,30 +2,27 @@ digraph l{
  node[shape=box fillcolor="#FFFFFF" style=filled]
  label ="Pila Admin" 
  bgcolor= "#398D9C" 
-B0[label="Rechazar un Estudiante 27/02/2023 - 18:16:09", group=1];
-B1[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
-B2[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
-B3[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
-B4[label="Rechazar un Estudiante27/02/2023 - 18:16:08", group=1];
-B5[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
-B6[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
-B7[label="Rechazar un Estudiante27/02/2023 - 18:16:07", group=1];
-B8[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
-B9[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
-B10[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
-B11[label="Rechazar un Estudiante27/02/2023 - 18:16:06", group=1];
-B12[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
-B13[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
-B14[label="Rechazar un Estudiante27/02/2023 - 18:16:05", group=1];
-B15[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
-B16[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
-B17[label="Rechazar un Estudiante27/02/2023 - 18:16:04", group=1];
-B18[label="Rechazar un Estudiante27/02/2023 - 18:16:03", group=1];
-B19[label="Rechazar un Estudiante27/02/2023 - 18:16:03", group=1];
-B20[label="Rechazar un Estudiante27/02/2023 - 18:16:02", group=1];
-B21[label="Rechazar un Estudiante27/02/2023 - 18:16:02", group=1];
-B22[label="Carga Masiva de Estudiantes27/02/2023 - 18:15:55", group=1];
-B23[label="Iniciar Sesión27/02/2023 - 18:15:49", group=1];
+B0[label="Mostrar Estudiantes en el sistema 27/02/2023 - 19:28:06", group=1];
+B1[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
+B2[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
+B3[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
+B4[label="Rechazar un Estudiante27/02/2023 - 19:27:57", group=1];
+B5[label="Rechazar un Estudiante27/02/2023 - 19:27:57", group=1];
+B6[label="Aceptar un Estudiante27/02/2023 - 19:27:54", group=1];
+B7[label="Aceptar un Estudiante27/02/2023 - 19:27:53", group=1];
+B8[label="Aceptar un Estudiante27/02/2023 - 19:27:53", group=1];
+B9[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
+B10[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
+B11[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
+B12[label="Aceptar un Estudiante27/02/2023 - 19:27:51", group=1];
+B13[label="Aceptar un Estudiante27/02/2023 - 19:27:51", group=1];
+B14[label="Aceptar un Estudiante27/02/2023 - 19:27:50", group=1];
+B15[label="Aceptar un Estudiante27/02/2023 - 19:27:50", group=1];
+B16[label="Aceptar un Estudiante27/02/2023 - 19:27:49", group=1];
+B17[label="Aceptar un Estudiante27/02/2023 - 19:27:49", group=1];
+B18[label="Carga Masiva de Estudiantes27/02/2023 - 19:27:45", group=1];
+B19[label="Mostrar Estudiantes en el sistema27/02/2023 - 19:26:58", group=1];
+B20[label="Iniciar Sesión27/02/2023 - 19:26:55", group=1];
 
 B0-> B1
 B1-> B2
@@ -47,7 +44,4 @@ B16-> B17
 B17-> B18
 B18-> B19
 B19-> B20
-B20-> B21
-B21-> B22
-B22-> B23
 }

@@ -2,54 +2,84 @@ digraph l{
  node[shape=box fillcolor="#FFFFFF" style=filled]
  label ="Lista Doble" 
  bgcolor= "#398D9C" 
-B0[label="1
-sova gina", group=0];
+B0[label="201403877
+Ebany Larios", group=0];
 
 
-P00[label="Se ha iniciado Sesi贸n 27/02/2023 - 18:50:09", group=0];
-P01[label="Se ha iniciado Sesi贸n27/02/2023 - 18:50:07", group=0];
-P02[label="Se ha iniciado Sesi贸n27/02/2023 - 18:50:04", group=0];
-B1[label="2
-juan guarnizo", group=1];
+B1[label="201700375
+Bryan Montepeque", group=1];
 
 
-B2[label="3
-benito camelo", group=2];
+B2[label="201700653
+Kevyn Gir髇", group=2];
 
 
-B3[label="4
-Orinar comodin", group=3];
+B3[label="201700918
+Cristian Suy", group=3];
 
 
-P30[label="Se ha iniciado Sesi贸n 27/02/2023 - 18:50:16", group=3];
-P31[label="Se ha iniciado Sesi贸n27/02/2023 - 18:50:13", group=3];
-B4[label="5
-Ramiro Agust铆n", group=4];
+B4[label="201780044
+Leonardo Martinez", group=4];
 
 
-P40[label="Se ha iniciado Sesi贸n 27/02/2023 - 18:50:01", group=4];
+B5[label="201801683
+Juan Augusto", group=5];
+
+
+B6[label="201900570
+Jonatan Gonzalez", group=6];
+
+
+B7[label="201902259
+Lourdes Reyes", group=7];
+
+
+B8[label="201903549
+Alejandro Caballeros", group=8];
+
+
+B9[label="202000544
+Roberto G髆ez", group=9];
+
+
+B10[label="202002940
+Sebasti醤 Godoy", group=10];
+
+
+B11[label="202004703
+Eduardo Cuevas", group=11];
+
+
 
 
 B0-> B1
 B1-> B2
 B2-> B3
 B3-> B4
+B4-> B5
+B5-> B6
+B6-> B7
+B7-> B8
+B8-> B9
+B9-> B10
+B10-> B11
 
 
+B11-> B10
+B10-> B9
+B9-> B8
+B8-> B7
+B7-> B6
+B6-> B5
+B5-> B4
 B4-> B3
 B3-> B2
 B2-> B1
 B1-> B0
 
 
-B0-> P00
-P00 -> P01
-P01 -> P02
-B3-> P30
-P30 -> P31
-B4-> P40
 
 
 
-{rank=same;B0;B1;B2;B3;B4;};
+{rank=same;B0;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11;};
 }
