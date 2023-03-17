@@ -6,50 +6,28 @@ B0[label="201403877
 Ebany Larios", group=0];
 
 
-B1[label="201700375
-Bryan Montepeque", group=1];
+B1[label="201700918
+Cristian Suy", group=1];
 
 
-B2[label="201700653
-Kevyn Girón", group=2];
+B2[label="201780044
+Leonardo Martinez", group=2];
 
 
-B3[label="201700918
-Cristian Suy", group=3];
+P20[label="Se ha iniciado SesiÃ³n 02/03/2023 - 15:54:06", group=2];
+B3[label="202000277
+Diana Berducido", group=3];
 
 
-B4[label="201780044
-Leonardo Martinez", group=4];
+B4[label="202001053
+Kevin Hernandez", group=4];
 
 
-B5[label="201801683
-Juan Augusto", group=5];
+B5[label="202010044
+Ramiro Telles Telles", group=5];
 
 
-B6[label="201900570
-Jonatan Gonzalez", group=6];
-
-
-B7[label="201902259
-Lourdes Reyes", group=7];
-
-
-B8[label="201903549
-Alejandro Caballeros", group=8];
-
-
-B9[label="202000544
-Roberto Gómez", group=9];
-
-
-B10[label="202002940
-Sebastián Godoy", group=10];
-
-
-B11[label="202004703
-Eduardo Cuevas", group=11];
-
-
+P50[label="Se ha iniciado SesiÃ³n 02/03/2023 - 15:53:41", group=5];
 
 
 B0-> B1
@@ -57,20 +35,8 @@ B1-> B2
 B2-> B3
 B3-> B4
 B4-> B5
-B5-> B6
-B6-> B7
-B7-> B8
-B8-> B9
-B9-> B10
-B10-> B11
 
 
-B11-> B10
-B10-> B9
-B9-> B8
-B8-> B7
-B7-> B6
-B6-> B5
 B5-> B4
 B4-> B3
 B3-> B2
@@ -78,8 +44,10 @@ B2-> B1
 B1-> B0
 
 
+B2-> P20
+B5-> P50
 
 
 
-{rank=same;B0;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11;};
+{rank=same;B0;B1;B2;B3;B4;B5;};
 }

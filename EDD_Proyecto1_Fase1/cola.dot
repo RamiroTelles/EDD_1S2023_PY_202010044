@@ -2,56 +2,86 @@ digraph l{
  node[shape=box fillcolor="#FFFFFF" style=filled]
  label ="Cola" 
  bgcolor= "#398D9C" 
-B0[label="202101648
-Juan Valle", group=0];
-B1[label="201325511
-Jose Melendez", group=1];
-B2[label="200819325
-Ethel Herrarte", group=2];
-B3[label="201906468
-Sergio Guix", group=3];
-B4[label="201801444
-José Donis", group=4];
-B5[label="201700490
-Marvin Castellanos", group=5];
-B6[label="201907608
-Ludwing Lopez", group=6];
-B7[label="201800673
-Sergio Bucaro", group=7];
-B8[label="200819074
-Christian Esquite", group=8];
-B9[label="202001471
-Luis Yaquian", group=9];
-B10[label="202010023
-Luis Lizama", group=10];
-B11[label="201503617
-Olivert Vargas", group=11];
-B12[label="202001800
-José Ibarra", group=12];
-B13[label="202100299
-Mauricio Castro", group=13];
-B14[label="202010810
-Velveth Pérez", group=14];
-B15[label="201222535
-Miguel Sac", group=15];
-B16[label="202111478
-José Panaza", group=16];
-B17[label="201807411
-Pablo Fernández", group=17];
-B18[label="201019694
-Henderson Hernandez", group=18];
-B19[label="202100239
-Aída Mansilla", group=19];
-B20[label="202105561
-Jeser Rodas", group=20];
-B21[label="202104782
-Anthony Zea", group=21];
-B22[label="201902416
-Julio Fernández", group=22];
-B23[label="202004807
-Hugo Giron", group=23];
-B24[label="202109554
-Mario Lopez", group=24];
+B0[label="202106484
+Wendi Vicente", group=0];
+B1[label="201944994
+Robin Buezo", group=1];
+B2[label="202010770
+Luis Moreira", group=2];
+B3[label="199919737
+Williams Constanza", group=3];
+B4[label="201700792
+Dennis Escobar", group=4];
+B5[label="200715321
+Jim Melendez", group=5];
+B6[label="201700907
+Alma Manchame", group=6];
+B7[label="201602404
+Kevin Secaida", group=7];
+B8[label="9616453
+Luis Pirir", group=8];
+B9[label="201807169
+Erick Chacon", group=9];
+B10[label="201710130
+Kevin Sotoj", group=10];
+B11[label="201700315
+Alejandro Yac", group=11];
+B12[label="202100953
+Damaris Muralles", group=12];
+B13[label="201807389
+Gladys Ajuchan", group=13];
+B14[label="201800678
+Wilmer Vasquez", group=14];
+B15[label="202002536
+Angela Pinelo", group=15];
+B16[label="202004060
+Gerber Ordonez", group=16];
+B17[label="202109732
+Jose Galdamez", group=17];
+B18[label="201403669
+William Ambrocio", group=18];
+B19[label="202004812
+Fredy Quijada", group=19];
+B20[label="201544815
+Jose Boguerin", group=20];
+B21[label="202101499
+Denis Coronado", group=21];
+B22[label="201602516
+Bryan Ignacio", group=22];
+B23[label="202109715
+Pablo Barahona", group=23];
+B24[label="199919737
+Williams Constanza", group=24];
+B25[label="201807351
+Brian Garcia", group=25];
+B26[label="202001570
+Nataly Guzman", group=26];
+B27[label="202109754
+Aldo Vasquez", group=27];
+B28[label="202100265
+Maria Tebalan", group=28];
+B29[label="202000127
+Moises Conde", group=29];
+B30[label="202002591
+Jorge Zamora", group=30];
+B31[label="201944766
+Javier Pablo", group=31];
+B32[label="201900621
+Erick Gonzalez", group=32];
+B33[label="201902363
+Christopher Monterroso", group=33];
+B34[label="202104160
+Steven Mejia", group=34];
+B35[label="201603028
+Oscar Morales", group=35];
+B36[label="202010814
+Luis Garcia", group=36];
+B37[label="201404028
+Helber Urias", group=37];
+B38[label="202000896
+Javier Matias", group=38];
+B39[label="8318054
+Hugo Rosal", group=39];
 
 B0-> B1
 B1-> B2
@@ -77,6 +107,21 @@ B20-> B21
 B21-> B22
 B22-> B23
 B23-> B24
+B24-> B25
+B25-> B26
+B26-> B27
+B27-> B28
+B28-> B29
+B29-> B30
+B30-> B31
+B31-> B32
+B32-> B33
+B33-> B34
+B34-> B35
+B35-> B36
+B36-> B37
+B37-> B38
+B38-> B39
 
-{rank=same;B0;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11;B12;B13;B14;B15;B16;B17;B18;B19;B20;B21;B22;B23;B24;};
+{rank=same;B0;B1;B2;B3;B4;B5;B6;B7;B8;B9;B10;B11;B12;B13;B14;B15;B16;B17;B18;B19;B20;B21;B22;B23;B24;B25;B26;B27;B28;B29;B30;B31;B32;B33;B34;B35;B36;B37;B38;B39;};
 }

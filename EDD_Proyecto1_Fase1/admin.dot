@@ -2,27 +2,19 @@ digraph l{
  node[shape=box fillcolor="#FFFFFF" style=filled]
  label ="Pila Admin" 
  bgcolor= "#398D9C" 
-B0[label="Mostrar Estudiantes en el sistema 27/02/2023 - 19:28:06", group=1];
-B1[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
-B2[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
-B3[label="Rechazar un Estudiante27/02/2023 - 19:27:58", group=1];
-B4[label="Rechazar un Estudiante27/02/2023 - 19:27:57", group=1];
-B5[label="Rechazar un Estudiante27/02/2023 - 19:27:57", group=1];
-B6[label="Aceptar un Estudiante27/02/2023 - 19:27:54", group=1];
-B7[label="Aceptar un Estudiante27/02/2023 - 19:27:53", group=1];
-B8[label="Aceptar un Estudiante27/02/2023 - 19:27:53", group=1];
-B9[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
-B10[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
-B11[label="Aceptar un Estudiante27/02/2023 - 19:27:52", group=1];
-B12[label="Aceptar un Estudiante27/02/2023 - 19:27:51", group=1];
-B13[label="Aceptar un Estudiante27/02/2023 - 19:27:51", group=1];
-B14[label="Aceptar un Estudiante27/02/2023 - 19:27:50", group=1];
-B15[label="Aceptar un Estudiante27/02/2023 - 19:27:50", group=1];
-B16[label="Aceptar un Estudiante27/02/2023 - 19:27:49", group=1];
-B17[label="Aceptar un Estudiante27/02/2023 - 19:27:49", group=1];
-B18[label="Carga Masiva de Estudiantes27/02/2023 - 19:27:45", group=1];
-B19[label="Mostrar Estudiantes en el sistema27/02/2023 - 19:26:58", group=1];
-B20[label="Iniciar Sesión27/02/2023 - 19:26:55", group=1];
+B0[label="Iniciar Sesión 02/03/2023 - 15:54:24", group=1];
+B1[label="Mostrar Estudiantes en el sistema02/03/2023 - 15:53:06", group=1];
+B2[label="Rechazar un Estudiante02/03/2023 - 15:52:44", group=1];
+B3[label="Rechazar un Estudiante02/03/2023 - 15:52:44", group=1];
+B4[label="Aceptar un Estudiante02/03/2023 - 15:52:42", group=1];
+B5[label="Aceptar un Estudiante02/03/2023 - 15:52:42", group=1];
+B6[label="Aceptar un Estudiante02/03/2023 - 15:52:41", group=1];
+B7[label="Aceptar un Estudiante02/03/2023 - 15:52:40", group=1];
+B8[label="Aceptar un Estudiante02/03/2023 - 15:52:39", group=1];
+B9[label="Carga Masiva de Estudiantes02/03/2023 - 15:52:30", group=1];
+B10[label="Aceptar un Estudiante02/03/2023 - 15:52:10", group=1];
+B11[label="Meter Estudiante a Cola de aceptacion02/03/2023 - 15:51:57", group=1];
+B12[label="Iniciar Sesión02/03/2023 - 15:51:40", group=1];
 
 B0-> B1
 B1-> B2
@@ -36,12 +28,4 @@ B8-> B9
 B9-> B10
 B10-> B11
 B11-> B12
-B12-> B13
-B13-> B14
-B14-> B15
-B15-> B16
-B16-> B17
-B17-> B18
-B18-> B19
-B19-> B20
 }
