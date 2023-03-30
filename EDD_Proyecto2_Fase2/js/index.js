@@ -3,7 +3,8 @@
 
 const arbolito = new arbolAVL();
 
-arbolito.insertar(5);
-arbolito.insertar(2);
-arbolito.insertar(8);
+arbolito.raiz= arbolito.insertarR(new est("Rami",5,"123"),arbolito.raiz);
+arbolito.raiz=arbolito.insertarR(new est("Rami",2,"123"),arbolito.raiz);
+arbolito.raiz=arbolito.insertarR(new est("Rami",8,"123"),arbolito.raiz);
+
 console.log(arbolito)
