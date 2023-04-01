@@ -1,0 +1,50 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    
+</head>
+<body>
+    <div id="ordenes">
+        <h4>Elija tipo de recorrido</h4>
+        <form class="form" onsubmit="cargarEstudiantes(event)">
+        <select id="recorrido">
+            <option value="inOrder" selected>in Order</option>
+            <option value="preOrder">pre Order</option>
+            <option value="postOrder">post Order</option>
+        </select>
+        <button type="submit">Mostrar</button>
+    </form>
+    </div>
+    <div id="tablaEstu">
+        <table>
+            <thead>
+                <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Contra</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaEstu">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <h1>Grafica</h1>
+    <img id="reporteAVL" >
+
+
+
+    <script src="js/estruc/estudiantes.js"></script>
+    <script src="js/estruc/listaCircular.js"></script>
+    <script src="js/estruc/avl.js"></script>
+    <script src="js/index.js" module></script>
+    
+</body>
+
+</html>

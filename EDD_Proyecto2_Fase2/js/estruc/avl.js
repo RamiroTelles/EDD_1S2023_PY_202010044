@@ -7,6 +7,9 @@ class nodoAVL{
     }
 }
 
+let enlaces="";
+let nodos="";
+
 class arbolAVL{
     constructor(){
         this.raiz=null;
@@ -47,6 +50,22 @@ class arbolAVL{
             }
         }
     } */
+
+    buscar(carnet){
+        let temp = this.raiz;
+        while(true){
+            if(temp===null){
+                return null;
+            }
+            if (carnet===temp.dato.carnet){
+                return temp.dato;
+            }else if(carnet>temp.dato.carnet){
+                temp = temp.der;
+            }else if(carnet<temp.dato.carnet){
+                temp=temp.izq;
+            }
+        }
+    }
 
 
     getAltura(nodo){
@@ -114,7 +133,7 @@ class arbolAVL{
 
 
     rotacionDer(n1){
-        debugger;
+        
         let n2= n1.izq;
         n1.izq = n2.der;
         n2.der = n1;
@@ -136,8 +155,107 @@ class arbolAVL{
         return n2;
     }
 
+    preOrden(nodo){
+        let dato ="";
+        dato +=`
+                <tr>
+                    <td> ${nodo.dato.carnet} </td>
+                    <td> ${nodo.dato.nombre} </td>
+                    <td> ${nodo.dato.password} </td>
+                </tr>
+                `;
+        if (nodo.izq!== null){
+            dato+= this.preOrden(nodo.izq);
+        }
+        if(nodo.der!== null){
+            dato+= this.preOrden(nodo.der);
+        }
+        return dato;
+    }
 
+    inOrden(nodo){
+        let dato ="";
+        if (nodo.izq!== null){
+            dato+= this.inOrden(nodo.izq);
+        }
+        dato +=`
+                <tr>
+                    <td> ${nodo.dato.carnet} </td>
+                    <td> ${nodo.dato.nombre} </td>
+                    <td> ${nodo.dato.password} </td>
+                </tr>
+                `;
+        
+        if(nodo.der!== null){
+            dato+= this.inOrden(nodo.der);
+        }
+        return dato;
+    }
+
+    postOrden(nodo){
+        let dato ="";
+        if (nodo.izq!== null){
+            dato+= this.postOrden(nodo.izq);
+        }
+        if(nodo.der!== null){
+            dato+= this.postOrden(nodo.der);
+        }
+        dato +=`
+                <tr>
+                    <td> ${nodo.dato.carnet} </td>
+                    <td> ${nodo.dato.nombre} </td>
+                    <td> ${nodo.dato.password} </td>
+                </tr>
+                `;
+        
+        
+        return dato;
+    }
     
+     generarGrafEnl(nodo){
+        let enl ="";
+        
+        if (nodo.izq!==null){
+           enl+= this.generarGrafEnl(nodo.izq);
+            enl+= `n${nodo.dato.carnet} -> n${nodo.izq.dato.carnet};\n`;
+        }
+
+        if(nodo.der!== null){
+            enl+= this.generarGrafEnl(nodo.der);
+            enl+=`n${nodo.dato.carnet} -> n${nodo.der.dato.carnet};\n`;
+        }
+        return enl;
+    }
+
+    generarGrafNodos(nodo){
+        let nod="";
+
+        if(nodo.izq!==null){
+            nod+=this.generarGrafNodos(nodo.izq);
+        }
+        nod+=`n${nodo.dato.carnet}[label=\"${nodo.dato.carnet}\\n${nodo.dato.nombre}\\nAltura=${nodo.altura}\"];\n`;
+        if(nodo.der!==null){
+            nod+=this.generarGrafNodos(nodo.der);
+        }
+        return nod;
+    }
+
+    reporteGraf(){
+        let dot=`digraph L{
+node[shape=box]
+            
+label= "Arbol AVL"
+        `;
+        let nodos = this.generarGrafNodos(this.raiz);
+        let enlaces = this.generarGrafEnl(this.raiz);
+        dot+= nodos;
+        dot+= enlaces;
+        dot+=" }";
+        return dot;
+    }
+ 
+
 
 }
 
+ 
