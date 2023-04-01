@@ -57,9 +57,12 @@ class arbolAVL{
         }
     }
 
+    maxi(izq,der){
+        return this.getAltura(izq) > this.getAltura(der) ? this.getAltura(izq) : this.getAltura(der); 
+    }
 
     insertarR(dato,nodo){
-        debugger;
+        
         if (nodo===null){
             return new nodoAVL(dato);
 
@@ -85,22 +88,56 @@ class arbolAVL{
 
         if ((this.getAltura(nodo.izq)-this.getAltura(nodo.der))>1){
             if(dato.carnet< nodo.izq.dato.carnet){
-                //rotacion izquierda
+                //rotacion derecha
+                nodo = this.rotacionDer(nodo);
             }else{
-                //doble izquierda
+                //doble derecha
+                nodo.izq = this.rotacionIzq(nodo.izq);
+                nodo = this.rotacionDer(nodo);
             }
         }
 
         if((this.getAltura(nodo.izq)-this.getAltura(nodo.der))<-1){
-            if(dato.carnet<nodo.der.dato.carnet){
-                //rotacion derecha
+            if(dato.carnet>nodo.der.dato.carnet){
+                //rotacion izquierda
+                nodo = this.rotacionIzq(nodo);
             }else{
-                //doble derecha
+                //doble izquierda
+                nodo.der = this.rotacionDer(nodo.der);
+                nodo = this.rotacionIzq(nodo);
             }
         }
 
 
-        return nodo
+        return nodo;
     }
+
+
+    rotacionDer(n1){
+        debugger;
+        let n2= n1.izq;
+        n1.izq = n2.der;
+        n2.der = n1;
+
+        n1.altura = this.maxi(n1.izq,n1.der)+1;
+        n2.altura = this.maxi(n2.izq,n2.der)+1;
+        return n2;
+    }
+
+    rotacionIzq(n1){
+        let n2 = n1.der;
+        n1.der = n2.izq;
+        n2.izq = n1;
+        
+        n1.altura = this.maxi(n1.izq,n1.der)+1;
+        n2.altura = this.maxi(n2.izq,n2.der)+1;
+
+
+        return n2;
+    }
+
+
+    
+
 }
 
