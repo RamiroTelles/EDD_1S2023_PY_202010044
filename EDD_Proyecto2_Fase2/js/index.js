@@ -1,10 +1,55 @@
 //export{arbolAVL} from "./estruc/avl"
 
+function regresar(){
+    window.location="index.html"
+}
+
+async function cargaMasiva(e){
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const form = Object.fromEntries(formData);
+    
+    try{
+        let fileR = new FileReader();
+        fileR.readAsText(form.archivo);
+        fileR.onload = ()  => {
+            
+            //console.log(JSON.parse(fileR.result).alumnos);
+            JSON.parse(fileR.result).alumnos.forEach(element => {
+                //console.log(element)
+                arbolito.raiz= arbolito.insertarR(new est(element.nombre,element.carnet,element.password),arbolito.raiz);
+    
+            });
+        };
+        alert("Carga Masiva Exitosa")
+        /* console.log(arbolito);
+        console.log(JSON.stringify(arbolito))
+        console.log(JSON.stringify(arbolito.raiz))
+        localStorage.setItem("arbolAVL",JSON.stringify(arbolito)); */
+        
+    }catch(error){
+        console.log(error);
+        alert("error")
+
+    } 
+    
+}
+
+function cargarLocalStorage(){
+    localStorage.setItem("arbolAVL",JSON.stringify(arbolito));
+}
+
 function colocarGrafica(){
-    let dot = arbolito.reporteGraf();
-    let url = 'https://quickchart.io/graphviz?graph=';
-    let img = document.getElementById("reporteAVL");
-    img.setAttribute("src",url+dot)
+    if(arbolito.raiz===null){
+        alert("Arbol Vacio")
+    }else{
+        let dot = arbolito.reporteGraf();
+        let url = 'https://quickchart.io/graphviz?graph=';
+        let img = document.getElementById("reporteAVL");
+        img.setAttribute("src",url+dot)
+
+    }
+    
     //$("#reporteAVL").attr("src",url + dot);
 }
 
@@ -71,9 +116,31 @@ function login(e){
 }
 
 
- const arbolito = new arbolAVL();
+const arbolito = new arbolAVL();
+let datos = localStorage.getItem("arbolAVL");
+console.log(JSON.parse(datos));
+if(datos!==null){
+    arbolito.raiz = JSON.parse(datos).raiz;
+    console.log(arbolito);
+}
 
-arbolito.raiz= arbolito.insertarR(new est("z",15,"123"),arbolito.raiz);
+
+const matriz = new matrisDispersa(202010044);
+
+console.clear();
+console.log(matriz);
+matriz.insertarArchivo("papas.txt");
+matriz.insertarArchivo("pompas.txt");
+matriz.insertarArchivo("varitas.txt");
+matriz.insertarPermisos(19,"papas.txt","r,w");
+matriz.insertarPermisos(27,"pompas.txt","r,w");
+matriz.insertarPermisos(19,"pompas.txt","r,w");
+matriz.insertarPermisos(27,"papas.txt","r,w");
+matriz.insertarPermisos(27,"papas.txt","r");
+
+
+
+//arbolito.raiz= arbolito.insertarR(new est("z",15,"123"),arbolito.raiz);
 //arbolito.raiz=arbolito.insertarR(new est("t1",10,"123"),arbolito.raiz);
 //arbolito.raiz=arbolito.insertarR(new est("y",30,"123"),arbolito.raiz);
 //arbolito.raiz=arbolito.insertarR(new est("x",25,"123"),arbolito.raiz);

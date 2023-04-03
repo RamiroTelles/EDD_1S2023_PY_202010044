@@ -3,6 +3,7 @@ class est{
         this.nombre = nombre
         this.carnet = carnet
         this.password = contra
+    
         
 
     }
