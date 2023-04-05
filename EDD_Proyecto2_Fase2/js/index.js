@@ -144,10 +144,10 @@ function login(e){
 
 function inicioUsuario(){
     debugger;
-    let usuario = localStorage.getItem("CurrentStudent");
+    let usuario = JSON.parse(localStorage.getItem("CurrentStudent"));
     let alumno = arbolito.buscar(usuario);
     arbolEne = usuario.arbolEnario;
-    list = usuario.bitaccora;
+    list = usuario.bitacora;
     console.log(arbolEne);
     console.log(list);
 }
