@@ -5,15 +5,23 @@ function regresar(){
     
 }
 
+async function colocarGraficaArbolN(){
+    dot = await arbolEne.graficar();
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let img = document.getElementById("reporteArbolN");
+    img.setAttribute("src",url+dot)
+}
+
 async function colocarGraficaLista(){
+
     dot = await list.graficarLista();
     let url = 'https://quickchart.io/graphviz?graph=';
     let img = document.getElementById("reporteLog");
     img.setAttribute("src",url+dot)
 }
 
-async function colocarGraficaMatriz(){
-    dot = await matriz.graficarMatriz();
+async function colocarGraficaMatriz(laMatriz){
+    dot = await laMatriz.graficarMatriz();
     let url = 'https://quickchart.io/graphviz?graph=';
     let img = document.getElementById("reporteMatriz");
     img.setAttribute("src",url+dot)
@@ -33,7 +41,8 @@ async function cargaMasiva(e){
             //console.log(JSON.parse(fileR.result).alumnos);
             JSON.parse(fileR.result).alumnos.forEach(element => {
                 //console.log(element)
-                arbolito.raiz= arbolito.insertarR(new est(element.nombre,element.carnet,element.password),arbolito.raiz);
+                debugger;
+                arbolito.raiz= arbolito.insertarR(new estudiante(element.nombre,element.carnet,element.password),arbolito.raiz);
     
             });
         };
@@ -124,6 +133,7 @@ function login(e){
             alert("Usuario o contrasena invalida");
         }else{
             //console.log(`Bienvenido ${alumno.nombre}, con carnet: ${alumno.carnet}`);
+            localStorage.setItem("CurrentStudent",JSON.stringify(usuario));
             window.location="usuario.html";
         }
        
@@ -132,18 +142,53 @@ function login(e){
 }
 
 
+function inicioUsuario(){
+    debugger;
+    let usuario = localStorage.getItem("CurrentStudent");
+    let alumno = arbolito.buscar(usuario);
+    arbolEne = usuario.arbolEnario;
+    list = usuario.bitaccora;
+    console.log(arbolEne);
+    console.log(list);
+}
+
+
+
 const arbolito = new arbolAVL();
+
+let arbolEne;
+let list;
 let datos = localStorage.getItem("arbolAVL");
 console.log(JSON.parse(datos));
+
 if(datos!==null){
     arbolito.raiz = JSON.parse(datos).raiz;
     console.log(arbolito);
 }
 
+//console.log(arbolito.raiz.dato.bitacora);
 
 //const matriz = new matrisDispersa(202010044);
 
-console.clear();
+
+
+/* const arbolEne = new arbolN();
+
+arbolEne.agregarCarpeta("Kanata","/");
+arbolEne.agregarCarpeta("Poste","/");
+arbolEne.agregarCarpeta("Carretera","/");
+arbolEne.agregarCarpeta("Kanata","/");
+
+
+arbolEne.agregarCarpeta("Amane","/Kanata");
+arbolEne.agregarCarpeta("Asfalto","/Carretera");
+arbolEne.agregarCarpeta("Pavimento","/Carretera");
+arbolEne.agregarCarpeta("Edor","/Carretera");
+arbolEne.agregarCarpeta("Meringitis","/Carretera/Edor");
+arbolEne.agregarCarpeta("Otro","/Carretera/Edor");
+
+console.log(arbolEne);
+ */
 //console.log(matriz);
 //matriz.insertarArchivo("papas.txt");
 //matriz.insertarArchivo("pompas.txt");

@@ -7,16 +7,24 @@
         <button onclick="regresar()">Regresar</button>
         <h1>usuario</h1>
     </body>
-    
-    <button onclick="colocarGraficaMatriz()">Mostrar Grafica Matriz</button>
-    <img id="reporteMatriz" >
+    <div>
+        <button onclick="colocarGraficaArbolN()">Mostrar Grafica arbol N-ario</button>
+        <img id="reporteArbolN">
+    </div>
 
-    <button onclick="colocarGraficaLista()">Mostrar Grafica Log</button>
-    <img id="reporteLog" >
-
+    <div>
+        <button onclick="colocarGraficaMatriz()">Mostrar Grafica Matriz</button>
+        <img id="reporteMatriz" >
+    </div>
+    <div>
+        <button onclick="colocarGraficaLista()">Mostrar Grafica Log</button>
+        <img id="reporteLog" >
+    </div>
+    <script src="js/estruc/arbolN.js"></script>
     <script src="js/estruc/listaCircular.js"></script>
     <script src="js/estruc/matrizD.js"></script>
     <script src="js/estruc/estudiantes.js"></script>
     <script src="js/estruc/avl.js"></script>
     <script src="js/index.js"></script>
+    <script>inicioUsuario()</script>
 </html>
