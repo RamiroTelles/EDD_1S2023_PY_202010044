@@ -2,6 +2,22 @@
 
 function regresar(){
     window.location="index.html"
+    
+}
+
+async function colocarGraficaLista(){
+    dot = await list.graficarLista();
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let img = document.getElementById("reporteLog");
+    img.setAttribute("src",url+dot)
+}
+
+async function colocarGraficaMatriz(){
+    dot = await matriz.graficarMatriz();
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let img = document.getElementById("reporteMatriz");
+    img.setAttribute("src",url+dot)
+    
 }
 
 async function cargaMasiva(e){
@@ -125,20 +141,28 @@ if(datos!==null){
 }
 
 
-const matriz = new matrisDispersa(202010044);
+//const matriz = new matrisDispersa(202010044);
 
 console.clear();
-console.log(matriz);
-matriz.insertarArchivo("papas.txt");
-matriz.insertarArchivo("pompas.txt");
-matriz.insertarArchivo("varitas.txt");
-matriz.insertarPermisos(19,"papas.txt","r,w");
-matriz.insertarPermisos(27,"pompas.txt","r,w");
-matriz.insertarPermisos(19,"pompas.txt","r,w");
-matriz.insertarPermisos(27,"papas.txt","r,w");
-matriz.insertarPermisos(27,"papas.txt","r");
+//console.log(matriz);
+//matriz.insertarArchivo("papas.txt");
+//matriz.insertarArchivo("pompas.txt");
+//matriz.insertarArchivo("varitas.txt");
+//matriz.insertarPermisos(19,"papas.txt","r,w");
+//matriz.insertarPermisos(27,"pompas.txt","r,w");
+//matriz.insertarPermisos(19,"pompas.txt","r,w");
+//matriz.insertarPermisos(27,"papas.txt","r,w");
+//matriz.insertarPermisos(27,"papas.txt","r");
+
+//const list = new listaCicular();
+
+//list.insertar(1);
 
 
+//list.insertar(2);
+//list.insertar(3);
+//list.insertar(4);
+//list.insertar(5);
 
 //arbolito.raiz= arbolito.insertarR(new est("z",15,"123"),arbolito.raiz);
 //arbolito.raiz=arbolito.insertarR(new est("t1",10,"123"),arbolito.raiz);
