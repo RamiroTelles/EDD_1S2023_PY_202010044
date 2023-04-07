@@ -53,18 +53,23 @@ class arbolAVL{
 
     buscar(carnet){
         let temp = this.raiz;
-        while(true){
-            if(temp===null){
-                return null;
+        if(typeof carnet === 'number'){
+            while(true){
+                if(temp===null){
+                    return null;
+                }
+                if (carnet===temp.dato.carnet){
+                    return temp.dato;
+                }else if(carnet>temp.dato.carnet){
+                    temp = temp.der;
+                }else if(carnet<temp.dato.carnet){
+                    temp=temp.izq;
+                }
             }
-            if (carnet===temp.dato.carnet){
-                return temp.dato;
-            }else if(carnet>temp.dato.carnet){
-                temp = temp.der;
-            }else if(carnet<temp.dato.carnet){
-                temp=temp.izq;
-            }
+        }else{
+            return null;
         }
+       
     }
 
 

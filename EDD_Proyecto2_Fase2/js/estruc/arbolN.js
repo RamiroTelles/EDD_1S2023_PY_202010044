@@ -64,6 +64,7 @@ class arbolN{
     }
 
     async graficar(){
+        console.log("Pos para javascript esto no existe");
         let nodosT = await this.generarNodosGraf(this.raiz);
         let enlT = await this.generarEnlGraf(this.raiz);
         let dot = `digraph L{

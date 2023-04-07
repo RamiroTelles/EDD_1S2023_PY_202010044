@@ -5,8 +5,30 @@
     </head>
     <body>
         <button onclick="regresar()">Regresar</button>
-        <h1>usuario</h1>
-    </body>
+        
+    
+    <div>
+        <div style="width: 400px;height: 200px; border: 1px; border-color: black;">
+            <form id="carpeta" name="carpeta">
+                <input id="nombreCarpeta" nombre="nombreCarpeta" type="text">
+                <button type="submit">AgregarCarpeta</button>
+            </form>
+            <form id="carpeta" name="carpeta">
+                <input id="nombreCarpeta" nombre="nombreCarpeta" type="file">
+                <button type="submit">AgregarArchivo</button>
+            </form>
+        </div>
+        <div style="width: 400px; height: 200px;">
+            <form id="nav" name="nav">
+                <input id="directorio" nombre="directorio" type="text" value="/">
+                <button type="submit">Mostrar Directorio</button>
+            </form>
+            <div id="MostrarDirectorio" name="MostrarDirectorio">
+
+            </div>
+        </div>
+    </div>
+    <h1>usuario</h1>
     <div>
         <button onclick="colocarGraficaArbolN()">Mostrar Grafica arbol N-ario</button>
         <img id="reporteArbolN">
@@ -27,4 +49,5 @@
     <script src="js/estruc/avl.js"></script>
     <script src="js/index.js"></script>
     <script>inicioUsuario()</script>
+</body>
 </html>

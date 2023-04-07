@@ -6,6 +6,7 @@ function regresar(){
 }
 
 async function colocarGraficaArbolN(){
+    console.log(arbolEne);
     dot = await arbolEne.graficar();
     let url = 'https://quickchart.io/graphviz?graph=';
     let img = document.getElementById("reporteArbolN");
@@ -13,11 +14,14 @@ async function colocarGraficaArbolN(){
 }
 
 async function colocarGraficaLista(){
+    if(list.cant>0){
+        dot = await list.graficarLista();
+        let url = 'https://quickchart.io/graphviz?graph=';
+        let img = document.getElementById("reporteLog");
+        img.setAttribute("src",url+dot)
+    }
 
-    dot = await list.graficarLista();
-    let url = 'https://quickchart.io/graphviz?graph=';
-    let img = document.getElementById("reporteLog");
-    img.setAttribute("src",url+dot)
+    
 }
 
 async function colocarGraficaMatriz(laMatriz){
@@ -142,29 +146,41 @@ function login(e){
 }
 
 
-function inicioUsuario(){
-    debugger;
-    let usuario = JSON.parse(localStorage.getItem("CurrentStudent"));
-    let alumno = arbolito.buscar(usuario);
-    arbolEne = usuario.arbolEnario;
-    list = usuario.bitacora;
+async function inicioUsuario(){
+    
+    let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    let alumno = await arbolito.buscar(usuario);
+    
+    arbolEne.raiz = alumno.arbolEnario.raiz;
+    arbolEne.cant = alumno.arbolEnario.cant;
+
+    list.cabecera = alumno.bitacora.cabecera;
+    list.cant = alumno.bitacora.cant;
     console.log(arbolEne);
     console.log(list);
-}
+} 
 
 
 
 const arbolito = new arbolAVL();
 
-let arbolEne;
-let list;
+var arbolEne = new arbolN();
+var list= new listaCicular();
 let datos = localStorage.getItem("arbolAVL");
 console.log(JSON.parse(datos));
 
-if(datos!==null){
+if(datos!=null){
     arbolito.raiz = JSON.parse(datos).raiz;
     console.log(arbolito);
 }
+let a = new arbolN();
+console.log(a);
+/* let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+if(usuario!=null){
+
+}
+let eldatopto= arbolito.buscar(usuario);
+console.log(eldatopto); */
 
 //console.log(arbolito.raiz.dato.bitacora);
 
