@@ -28,7 +28,7 @@ class arbolN{
                 if(copia=== undefined || copia === null){
                     padre.hijos.push(new nodoAN(nuevoNombre,this.cant));
                     this.cant++;
-                    return;
+                    return true;
                 }
                 
                 nuevoNombre= `Copia${i} ${nombre}`;
@@ -39,6 +39,7 @@ class arbolN{
             
         }else{
             alert("No se pudo agregar la Carpeta");
+            return false;
         }
     }
 
@@ -92,7 +93,7 @@ class arbolN{
     }
 
     generarEnlGraf(nodo){
-        debugger;
+       // debugger;
         let enl="";
         
         for(let i =0;i<nodo.hijos.length;i++){
@@ -102,6 +103,65 @@ class arbolN{
         return enl;
     }
 
+
+    crearHTML(dir){
+        let padre = this.obtenerDirectorio(dir);
+        let cod ="";
+        if(padre!==null){
+            for(let i=0;i<padre.hijos.length;i++){
+                cod+=`<div>
+                        <img src="./img/carpeta.png" width="30px" height="30px" />
+                        <p class="h6 text-center">${padre.hijos[i].dato}</p>
+                    </div>`;
+            }
+        }else{
+            alert("Carpeta no encontrada");
+        }
+        return cod;
+
+
+    }
+
+    obtenerDotMatriz(dir,carnet){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!=null){
+            if(padre.matriz==undefined || padre.matriz==null){
+                padre.matriz = new matrisDispersa(carnet);
+                let dot = padre.matriz.graficarMatriz();
+                return dot;
+            }else{
+                let dot = padre.matriz.graficarMatriz();
+                return dot;
+            }
+        }else{
+            alert("No se encontró la carpeta");
+            return null;
+        }
+
+    }
+
+    eliminarCarpeta(nombre,dir){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!==null){
+            let pos = padre.hijos.findIndex(elem => elem.dato == nombre);
+            console.log(pos);
+            if(pos===-1){
+                alert("No se encontró la Carpeta");
+                return false;
+            }else{
+                padre.hijos.splice(pos,1);
+                console.log(padre.hijos);
+                alert("Carpeta Eliminada con exito");
+                return true;
+            }
+        }else{
+            alert("No se encontró la Carpeta");
+            return false;
+        }
+        
+
+
+    }
 }
 
 

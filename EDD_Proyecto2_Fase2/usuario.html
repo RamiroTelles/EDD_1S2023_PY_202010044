@@ -8,18 +8,22 @@
         
     
     <div>
-        <div style="width: 400px;height: 200px; border: 1px; border-color: black;">
-            <form id="carpeta" name="carpeta">
+        <div style="width: 400px;border: 1px; border-color: black;">
+            <form id="carpeta" name="carpeta" onsubmit="crearCarpeta(event)">
                 <input id="nombreCarpeta" nombre="nombreCarpeta" type="text">
                 <button type="submit">AgregarCarpeta</button>
             </form>
+            <form id="carpetaE" name="carpetaE" onsubmit="eliminarCarp(event)">
+                <input id="eliminarCarpeta" nombre="eliminarCarpeta" type="text">
+                <button type="submit">Eliminar Carpeta</button>
+            </form>
             <form id="carpeta" name="carpeta">
-                <input id="nombreCarpeta" nombre="nombreCarpeta" type="file">
+                <input id="nombreCarpeta" nombre="nombreCarpeta" type="file" accept="application/pdf, .txt, image/*">
                 <button type="submit">AgregarArchivo</button>
             </form>
         </div>
-        <div style="width: 400px; height: 200px;">
-            <form id="nav" name="nav">
+        <div style="width: 400px; height: 1000px;">
+            <form id="nav" name="nav" onsubmit="mostrarDir(event)">
                 <input id="directorio" nombre="directorio" type="text" value="/">
                 <button type="submit">Mostrar Directorio</button>
             </form>
@@ -35,7 +39,7 @@
     </div>
 
     <div>
-        <button onclick="colocarGraficaMatriz()">Mostrar Grafica Matriz</button>
+        <button onclick="extraerMatriz()">Mostrar Grafica Matriz</button>
         <img id="reporteMatriz" >
     </div>
     <div>

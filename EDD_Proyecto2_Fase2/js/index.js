@@ -5,12 +5,77 @@ function regresar(){
     
 }
 
+async function extraerMatriz(){
+    let dir = document.getElementById("directorio").value;
+    let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    let dot = await arbolEne.obtenerDotMatriz(dir,carnet);
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let img = document.getElementById("reporteMatriz");
+    img.setAttribute("src",url+dot);
+
+}
+
+function crearCarpeta(e){
+    e.preventDefault();
+    let dir = document.getElementById("directorio").value;
+    let nombre = document.getElementById("nombreCarpeta").value;
+    
+    let bool = arbolEne.agregarCarpeta(nombre,dir);
+    console.log(arbolEne);
+    actualizarArbol(); 
+    let hoy = new Date();
+    let ahora = hoy.toLocaleString()
+    if(bool){
+        agregarLog(`Se Creó carpeta ${nombre}`,`\nFecha: ${ahora}`);
+    }
+    
+}
+
+function eliminarCarp(e){
+    e.preventDefault();
+    let dir = document.getElementById("directorio").value;
+    let nombre = document.getElementById("eliminarCarpeta").value;
+    
+    let bool = arbolEne.eliminarCarpeta(nombre,dir);
+    console.log(arbolEne);
+    actualizarArbol(); 
+    let hoy = new Date();
+    let ahora = hoy.toLocaleString()
+    if(bool){
+        agregarLog(`Se eliminó carpeta ${nombre}`,`\nFecha: ${ahora}`);
+    }
+}
+
+function agregarLog(accion,hora){
+    let dato = `Accion: ${accion}\n ${hora}`;
+    list.insertar(dato);
+}
+
+
+
+function mostrarDir(e){
+    e.preventDefault();
+    let dir = document.getElementById("directorio").value;
+
+    codigo = arbolEne.crearHTML(dir);
+    let contenedor = document.getElementById("MostrarDirectorio");
+    contenedor.innerHTML = codigo;
+}
+
+async function actualizarArbol(){
+    let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    let alumno = await arbolito.buscar(usuario);
+    alumno.arbolEnario.cant = arbolEne.cant;
+}
+
+
+
 async function colocarGraficaArbolN(){
     console.log(arbolEne);
     dot = await arbolEne.graficar();
     let url = 'https://quickchart.io/graphviz?graph=';
     let img = document.getElementById("reporteArbolN");
-    img.setAttribute("src",url+dot)
+    img.setAttribute("src",url+dot);
 }
 
 async function colocarGraficaLista(){
@@ -18,7 +83,9 @@ async function colocarGraficaLista(){
         dot = await list.graficarLista();
         let url = 'https://quickchart.io/graphviz?graph=';
         let img = document.getElementById("reporteLog");
-        img.setAttribute("src",url+dot)
+        img.setAttribute("src",url+dot);
+    }else{
+        alert("Lista Vacia");
     }
 
     
@@ -28,7 +95,7 @@ async function colocarGraficaMatriz(laMatriz){
     dot = await laMatriz.graficarMatriz();
     let url = 'https://quickchart.io/graphviz?graph=';
     let img = document.getElementById("reporteMatriz");
-    img.setAttribute("src",url+dot)
+    img.setAttribute("src",url+dot);
     
 }
 
@@ -156,25 +223,25 @@ async function inicioUsuario(){
 
     list.cabecera = alumno.bitacora.cabecera;
     list.cant = alumno.bitacora.cant;
-    console.log(arbolEne);
-    console.log(list);
+    //console.log(arbolEne);
+    //console.log(list);
 } 
 
 
 
 const arbolito = new arbolAVL();
 
-var arbolEne = new arbolN();
-var list= new listaCicular();
+let arbolEne = new arbolN();
+let list= new listaCicular();
 let datos = localStorage.getItem("arbolAVL");
-console.log(JSON.parse(datos));
+//console.log(JSON.parse(datos));
 
 if(datos!=null){
     arbolito.raiz = JSON.parse(datos).raiz;
-    console.log(arbolito);
+   // console.log(arbolito);
 }
-let a = new arbolN();
-console.log(a);
+//let a = new arbolN();
+//console.log(a);
 /* let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
 if(usuario!=null){
 
