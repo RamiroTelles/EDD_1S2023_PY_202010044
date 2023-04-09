@@ -24,10 +24,33 @@ class matrisDispersa{
         return nodo===null? null:nodo.dato;
     }
 
+    encontrarRepetido(nombre){
+        let temp=this.raiz;
+        if(temp.down !==null){
+            temp = temp.down;
+            while(temp!==null){
+                if(temp.dato.name ===nombre){
+                    return true;
+                }
+                temp = temp.down
+            }
+            return false;
+        }else{
+            return false;
+        }
+        
+    }
+
     insertarArchivo(dato){
         
         let temp = this.raiz;
         let cont=0;
+        let i=0;
+        let nombre = dato.name;
+        while(this.encontrarRepetido(dato.name)){
+            dato.name = `Copia${i} ${nombre}`;
+            i++;
+        }
 
         while(temp.down!==null){
             temp = temp.down;
@@ -55,13 +78,14 @@ class matrisDispersa{
         let y;
 
         //Encuentra la fila a insertar
-        while(temp.down!==null && temp.down.dato!==archivo){
+        while(temp.down!==null && temp.down.dato.name!==archivo){
             temp = temp.down;
         }
 
         if(temp.down===null){
             console.log("Archivo no encontrado");
-            return
+            alert("Archivo no encontrado")
+            return false;
         }else{
             y = temp.down;
         }
@@ -91,7 +115,7 @@ class matrisDispersa{
         
         const nuevo = new nodoM(x.x,y.y,permisos);
 
-        this.insertarNodoConxy(x,y,nuevo);
+        return this.insertarNodoConxy(x,y,nuevo);
 
 
     }
@@ -99,8 +123,8 @@ class matrisDispersa{
     insertarNodoConxy(x,y,nodo){
         //debugger;
         let temp = x;
-        let duplicadoY = false;
-        let duplicadoX = false;
+       // let duplicadoY = false;
+        //let duplicadoX = false;
         //Busca el espacio en el que insertar el y
         while(temp.down!==null && temp.down.y<y.y){
             temp = temp.down;
@@ -117,7 +141,7 @@ class matrisDispersa{
             //Si el nodo existe, actualizo el dato
             if(temp.down.y===y.y){
                 temp.down.dato = nodo.dato;
-                return;
+                return true;
             }
             //insertar entre nodos
             temp.down.up = nodo;
@@ -146,7 +170,7 @@ class matrisDispersa{
             temp.right = nodo;
         }
 
-
+        return true;
     }
 
     async graficarMatriz(){
@@ -204,7 +228,12 @@ class matrisDispersa{
 
          while(filas!==null){
             while(columnas!==null){
-                nodos+=`n${columnas.x+1}${columnas.y+1}[label=\"${columnas.dato}\",group=${columnas.x+1}];\n`;
+                if(columnas.x===-1 && columnas.y !==-1){
+                    nodos+=`n${columnas.x+1}${columnas.y+1}[label=\"${columnas.dato.name}\",group=${columnas.x+1}];\n`;
+                }else{
+                    nodos+=`n${columnas.x+1}${columnas.y+1}[label=\"${columnas.dato}\",group=${columnas.x+1}];\n`;
+                }
+                
                 columnas = columnas.right;
             }
             //nodos+=`n${columnas.x+1}${columnas.y+1}[label="${columnas.dato}"];\n`;
@@ -248,6 +277,117 @@ class matrisDispersa{
             filas = columnas;
         }
         return enlaces;
+
+    }
+
+    crearHTMLArchivos(){
+        //debugger;
+        let cod ="";
+        let temp = this.raiz.down;
+        while(temp!==null){
+            if(temp.dato.type === 'text/plain'){
+                let txt = new Blob([temp.dato.content], {type: temp.dato.type});
+                const url = URL.createObjectURL(txt);
+                cod += `
+                        <div>
+                        <img src="./img/archivo.png" width="40px" height="40px"/>
+                        <p >
+                            <a href="${url}" download>
+                                ${temp.dato.name}
+                            </a>
+                        </p>
+                    </div>`;
+            }else{
+                cod += ` <div>
+                            <img src="./img/archivo.png" width="40px" height="40px"/>
+                        <p >
+                            <a href="${temp.dato.content}" download>
+                                ${temp.dato.name}
+                            </a>
+                        </p>
+                    </div>`;
+            }
+            temp = temp.down;
+        }
+        return cod;
+    }
+
+    eliminarArchivos(archivo){
+
+        let temp = this.raiz;
+        let x;
+        let y;
+
+        //Encuentra la fila a insertar
+        while(temp.down!==null && temp.down.dato.name!==archivo){
+            temp = temp.down;
+        }
+
+        if(temp.down===null){
+            console.log("Archivo no encontrado");
+            alert("Archivo no encontrado");
+            return false;
+        }else{
+            temp = temp.down;
+        }
+
+        // if(temp.down!==null){
+        //     while(temp!==null){
+                
+        //         temp.up.down = temp.down;
+        //         if(temp.down!==null){
+        //             temp.down.up = temp.up;
+        //         }
+                
+
+        //         temp = temp.right;
+        //     }
+        // }else{
+
+             
+             
+        //     while(temp!==null){
+                
+        //         temp.up.down = null;
+        //         temp = temp.right;
+        //     }
+
+            
+            
+            
+        // }
+
+        while(temp!==null){
+            
+            temp.up.down = temp.down;
+            if(temp.down!==null){
+                temp.down.up = temp.up;
+            }
+            
+
+            temp = temp.right;
+        }
+
+        this.actualizarAlturas();
+        alert("Archivo eliminado con exito");
+        return true;
+    }
+
+    actualizarAlturas(){
+        let con =-1;
+        let filas = this.raiz;
+        let columnas = this.raiz;
+        while(filas!==null){
+            while(columnas!==null){
+                columnas.y = con;
+                con++;
+                columnas = columnas.down;
+            }
+            filas = filas.right;
+            columnas=filas;
+            con=-1;
+        }
+
 
     }
 }

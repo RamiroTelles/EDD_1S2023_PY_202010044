@@ -1,26 +1,60 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="./js/library/cycle.js"></script>
 
     </head>
     <body>
         <button onclick="regresar()">Regresar</button>
+        <button onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
         
     
     <div>
         <div style="width: 400px;border: 1px; border-color: black;">
+            <hr>
             <form id="carpeta" name="carpeta" onsubmit="crearCarpeta(event)">
-                <input id="nombreCarpeta" nombre="nombreCarpeta" type="text">
+                <input id="nombreCarpeta" nombre="nombreCarpeta" type="text" placeholder="Nombre Carpeta">
                 <button type="submit">AgregarCarpeta</button>
             </form>
+            <hr>
             <form id="carpetaE" name="carpetaE" onsubmit="eliminarCarp(event)">
-                <input id="eliminarCarpeta" nombre="eliminarCarpeta" type="text">
+                <input id="eliminarCarpeta" nombre="eliminarCarpeta" type="text"  placeholder="Nombre Carpeta">
                 <button type="submit">Eliminar Carpeta</button>
             </form>
-            <form id="carpeta" name="carpeta">
-                <input id="nombreCarpeta" nombre="nombreCarpeta" type="file" accept="application/pdf, .txt, image/*">
-                <button type="submit">AgregarArchivo</button>
+            <hr>
+            <!-- <div>
+                <form class="form" id="ingresarArchivo" name="ingresarArchivo" onsubmit="agregarArchivo(event)">
+                    <p>Nombre Archivo</p>
+                    <input id="nombreArchivo" nombre="nombreArchivo" type="text" placeholder="Nombre Archivo">
+                    <input type="file" id="archivoEntrada" nombre="archivoEntrada"  accept="application/pdf, .txt, image/*">
+                    <div>
+                        <button type="submit">Agregar Archivo</button>
+                    </div>
+                    
+                </form>
+            </div> -->
+            <form class="form" onsubmit="subirArchivo(event)">
+                <input type="text" id="fileName" name="fileName" class="form-control mb-4" placeholder="Nombre de Archivos"/>
+                <input type="file" id="file" name="file" class="form-control" accept="application/pdf, .txt, image/*">
+                <div>
+                    <button type="submit">Subir Archivo</button>
+                </div>
             </form>
+
+            <hr>
+            <form id="archivoEs" name="archivoEs" onsubmit="eliminarArchivo(event)">
+                <input id="eliminarArchivos" nombre="eliminarArchivos" type="text" placeholder="Nombre Archivo">
+                <button type="submit">Eliminar Archivo</button>
+            </form>
+            <hr>
+            <hr>
+            <form id="permisos" name="permisos" onsubmit="darPermisos(event)">
+                <input id="carnet" nombre="carnet" type="text" placeholder="Carnet">
+                <input id="nombreArchivoPer" nombre="nombreArchivoPer" type="text" placeholder="Nombre Archivo">
+                <input id="Tpermisos" nombre="Tpermisos" type="text" placeholder="Tipo de permisos">
+                <button type="submit">dar Permisos</button>
+            </form>
+            <hr>
         </div>
         <div style="width: 400px; height: 1000px;">
             <form id="nav" name="nav" onsubmit="mostrarDir(event)">
@@ -46,6 +80,8 @@
         <button onclick="colocarGraficaLista()">Mostrar Grafica Log</button>
         <img id="reporteLog" >
     </div>
+
+    
     <script src="js/estruc/arbolN.js"></script>
     <script src="js/estruc/listaCircular.js"></script>
     <script src="js/estruc/matrizD.js"></script>

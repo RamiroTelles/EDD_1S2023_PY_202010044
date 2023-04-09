@@ -5,6 +5,107 @@ function regresar(){
     
 }
 
+function darPermisos(e){
+    e.preventDefault();
+    //console.log("dar Permisos");
+    let nombre = document.getElementById("nombreArchivoPer").value;
+    let dir = document.getElementById("directorio").value;
+    let carnet = document.getElementById("carnet").value;
+    let permisos = document.getElementById("Tpermisos").value;
+    let carnetUsuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    arbolEne.insertarPer(dir,carnet,permisos,nombre,carnetUsuario);
+    
+
+}
+
+function eliminarArchivo(e){
+    e.preventDefault();
+    //console.log("eliminar archivo");
+    let nombre = document.getElementById("eliminarArchivos").value;
+    let dir = document.getElementById("directorio").value;
+    let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    let bool = arbolEne.eliminarArchivo(dir,nombre,carnet);
+
+    let hoy = new Date();
+    let ahora = hoy.toLocaleString()
+    
+    if(bool){
+        agregarLog(`Se eliminó el archivo ${nombre}`,`\nFecha: ${ahora}`);
+    }
+    this.actualizarDir();
+}
+
+const toBase64 = file => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+});
+
+const subirArchivo =  async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const form = Object.fromEntries(formData);
+    //console.log(form.file);
+    let dir = document.getElementById("directorio").value;
+    let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    
+    if(form.file.type === 'text/plain'){
+        try{
+            let fr = new FileReader();
+            fr.readAsText(form.file);
+            fr.onload = () => { 
+                
+                arbolEne.agregarArchivo(dir,{
+                    name: form.fileName,
+                    content: fr.result,
+                    type: form.file.type
+                            },carnet);
+            
+            
+            
+            };
+        }catch(err){
+            console.log(err);
+            alert("Archivo no subido");
+           // return;
+        }
+        
+    }else{
+        
+        let parseBase64 = await toBase64(form.file);
+        arbolEne.agregarArchivo(dir,{
+            name: form.fileName,
+            content: parseBase64,
+            type: form.file.type
+                    },carnet);
+       
+       
+    }
+    alert('Archivo Subido!')
+    this.actualizarDir();
+    let hoy = new Date();
+    let ahora = hoy.toLocaleString()
+    agregarLog(`Se Subió  el archivo ${form.fileName}`,`\nFecha: ${ahora}`);
+
+}
+
+/* const agregarArchivo= async (e)=>{
+    e.preventDefault();
+    //console.log("agregar Archivo");
+    
+    const formData =await new FormData(e.target);
+    
+    const form = await Object.fromEntries(formData);
+    console.log(form.archivoEntrada);
+    //console.log(form.archivo);
+    
+     if(form.archivo.type === 'text/plain'){
+        let fr = new FileReader();
+        fr.readAsText(form.archivo)
+    } 
+} */
+
 async function extraerMatriz(){
     let dir = document.getElementById("directorio").value;
     let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
@@ -28,7 +129,7 @@ function crearCarpeta(e){
     if(bool){
         agregarLog(`Se Creó carpeta ${nombre}`,`\nFecha: ${ahora}`);
     }
-    
+    this.actualizarDir();
 }
 
 function eliminarCarp(e){
@@ -44,20 +145,33 @@ function eliminarCarp(e){
     if(bool){
         agregarLog(`Se eliminó carpeta ${nombre}`,`\nFecha: ${ahora}`);
     }
+    this.actualizarDir();
 }
 
-function agregarLog(accion,hora){
+async function agregarLog(accion,hora){
     let dato = `Accion: ${accion}\n ${hora}`;
     list.insertar(dato);
+
+    let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    let alumno = await arbolito.buscar(usuario);
+
+    alumno.bitacora.cabecera = list.cabecera;
+    alumno.bitacora.cant = list.cant;
 }
 
-
+function actualizarDir(){
+    let dir = document.getElementById("directorio").value;
+    let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    codigo = arbolEne.crearHTML(dir,carnet);
+    let contenedor = document.getElementById("MostrarDirectorio");
+    contenedor.innerHTML = codigo;
+}
 
 function mostrarDir(e){
     e.preventDefault();
     let dir = document.getElementById("directorio").value;
-
-    codigo = arbolEne.crearHTML(dir);
+    let carnet = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+    codigo = arbolEne.crearHTML(dir,carnet);
     let contenedor = document.getElementById("MostrarDirectorio");
     contenedor.innerHTML = codigo;
 }
@@ -112,7 +226,7 @@ async function cargaMasiva(e){
             //console.log(JSON.parse(fileR.result).alumnos);
             JSON.parse(fileR.result).alumnos.forEach(element => {
                 //console.log(element)
-                debugger;
+                //debugger;
                 arbolito.raiz= arbolito.insertarR(new estudiante(element.nombre,element.carnet,element.password),arbolito.raiz);
     
             });
@@ -132,7 +246,8 @@ async function cargaMasiva(e){
 }
 
 function cargarLocalStorage(){
-    localStorage.setItem("arbolAVL",JSON.stringify(arbolito));
+    localStorage.setItem("arbolAVL",JSON.stringify(JSON.decycle(arbolito)));
+    //localStorage.setItem("matriz", JSON.stringify(JSON.decycle(matrix)));
 }
 
 function colocarGrafica(){
@@ -233,12 +348,12 @@ const arbolito = new arbolAVL();
 
 let arbolEne = new arbolN();
 let list= new listaCicular();
-let datos = localStorage.getItem("arbolAVL");
+let datos = JSON.retrocycle(JSON.parse(localStorage.getItem("arbolAVL")));
 //console.log(JSON.parse(datos));
 
 if(datos!=null){
-    arbolito.raiz = JSON.parse(datos).raiz;
-   // console.log(arbolito);
+    arbolito.raiz = datos.raiz;
+    console.log(arbolito);
 }
 //let a = new arbolN();
 //console.log(a);
@@ -272,11 +387,24 @@ arbolEne.agregarCarpeta("Otro","/Carretera/Edor");
 
 console.log(arbolEne);
  */
-//console.log(matriz);
-//matriz.insertarArchivo("papas.txt");
-//matriz.insertarArchivo("pompas.txt");
+// console.log(matriz);
+// matriz.insertarArchivo({
+//     name: "papas.txt",
+//     content: "nada",
+//     type: "text/plain"
+// });
+// matriz.insertarArchivo({
+//     name: "pompas.txt",
+//     content: "nada2",
+//     type: "text/plain"
+// });
+
+
+ 
+
 //matriz.insertarArchivo("varitas.txt");
 //matriz.insertarPermisos(19,"papas.txt","r,w");
+//matriz.eliminarArchivos("papas.txt");
 //matriz.insertarPermisos(27,"pompas.txt","r,w");
 //matriz.insertarPermisos(19,"pompas.txt","r,w");
 //matriz.insertarPermisos(27,"papas.txt","r,w");

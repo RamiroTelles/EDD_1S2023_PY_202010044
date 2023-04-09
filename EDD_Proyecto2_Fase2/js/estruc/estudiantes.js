@@ -4,7 +4,7 @@ class estudiante{
         this.nombre = nombre;
         this.carnet = carnet;
         this.password = contra;
-        debugger;
+        //debugger;
         this.arbolEnario= new arbolN();
         this.bitacora = new listaCicular();
        // this.arbolEnario.agregarCarpeta("PUTO jAVASCRIPT FUNCIONA MRDA");

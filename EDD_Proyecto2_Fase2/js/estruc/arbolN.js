@@ -104,16 +104,27 @@ class arbolN{
     }
 
 
-    crearHTML(dir){
+    crearHTML(dir,carnet){
         let padre = this.obtenerDirectorio(dir);
         let cod ="";
         if(padre!==null){
             for(let i=0;i<padre.hijos.length;i++){
                 cod+=`<div>
-                        <img src="./img/carpeta.png" width="30px" height="30px" />
+                        <img src="./img/carpeta.png" width="40px" height="40px"/>
                         <p class="h6 text-center">${padre.hijos[i].dato}</p>
-                    </div>`;
+                    </div>\n`;
             }
+            if(padre.matriz==undefined || padre.matriz==null){
+                padre.matriz = new matrisDispersa(carnet);
+                cod+=padre.matriz.crearHTMLArchivos();
+            }else{
+                let nuevaMatriz = new matrisDispersa(carnet);
+                nuevaMatriz.raiz = padre.matriz.raiz
+                cod+=nuevaMatriz.crearHTMLArchivos();
+            }
+            
+              
+
         }else{
             alert("Carpeta no encontrada");
         }
@@ -130,7 +141,9 @@ class arbolN{
                 let dot = padre.matriz.graficarMatriz();
                 return dot;
             }else{
-                let dot = padre.matriz.graficarMatriz();
+                let nuevaMatriz = new matrisDispersa(carnet);
+                nuevaMatriz.raiz = padre.matriz.raiz
+                let dot = nuevaMatriz.graficarMatriz();
                 return dot;
             }
         }else{
@@ -160,6 +173,63 @@ class arbolN{
         }
         
 
+
+    }
+
+    agregarArchivo(dir,archivo,carnet){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!==null){
+            if(padre.matriz==undefined || padre.matriz==null){
+                padre.matriz = new matrisDispersa(carnet);
+                padre.matriz.insertarArchivo(archivo);
+                return true;
+            }else{
+                let nuevaMatriz = new matrisDispersa(carnet);
+                nuevaMatriz.raiz = padre.matriz.raiz
+                nuevaMatriz.insertarArchivo(archivo);
+                return true;
+            }
+
+        }else{
+            alert("Directorio erróneo")
+            return false;
+        }
+    }
+
+    eliminarArchivo(dir,archivo,carnet){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!==null){
+            if(padre.matriz==undefined || padre.matriz==null){
+                
+                alert("NO se encontró el archivo");
+                return false;
+            }else{
+                let nuevaMatriz = new matrisDispersa(carnet);
+                nuevaMatriz.raiz = padre.matriz.raiz
+                return nuevaMatriz.eliminarArchivos(archivo);
+            }
+        }else{
+            alert("Directorio erróneo")
+            return false;
+        }
+    }
+
+    insertarPer(dir,carnet,permisos,archivo,carnetUsuario){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!==null){
+            if(padre.matriz==undefined || padre.matriz==null){
+                
+                alert("No se encontró el archivo");
+                return false;
+            }else{
+                let nuevaMatriz = new matrisDispersa(carnetUsuario);
+                nuevaMatriz.raiz = padre.matriz.raiz
+                return nuevaMatriz.insertarPermisos(carnet,archivo,permisos);
+            }
+        }else{
+            alert("Directorio erróneo")
+            return false;
+        }
 
     }
 }
