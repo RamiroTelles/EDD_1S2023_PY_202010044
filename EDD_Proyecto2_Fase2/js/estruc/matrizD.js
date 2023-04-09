@@ -289,22 +289,26 @@ class matrisDispersa{
                 let txt = new Blob([temp.dato.content], {type: temp.dato.type});
                 const url = URL.createObjectURL(txt);
                 cod += `
-                        <div>
-                        <img src="./img/archivo.png" width="40px" height="40px"/>
-                        <p >
-                            <a href="${url}" download>
-                                ${temp.dato.name}
-                            </a>
-                        </p>
+                        <div class="card" style="width: 8rem;">
+                        <img class="card-img-top" src="./img/archivo.png" />
+                        <div class="card-body">
+                            <p class="card-text">
+                                <a href="${url}" download>
+                                    ${temp.dato.name}
+                                </a>
+                            </p>
+                        </div>
                     </div>`;
             }else{
-                cod += ` <div>
-                            <img src="./img/archivo.png" width="40px" height="40px"/>
-                        <p >
-                            <a href="${temp.dato.content}" download>
-                                ${temp.dato.name}
-                            </a>
-                        </p>
+                cod += ` <div class="card" style="width: 8rem;">
+                            <img class="card-img-top" src="./img/archivo.png" />
+                        <div class="card-body">
+                            <p class="card-text">
+                                <a href="${temp.dato.content}" download>
+                                    ${temp.dato.name}
+                                </a>
+                            </p>
+                        </div>
                     </div>`;
             }
             temp = temp.down;

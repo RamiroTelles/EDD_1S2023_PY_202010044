@@ -6,34 +6,49 @@
 
 <head>
     <script src="./js/library/cycle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: #2b2b2b;
+                color: #fff;
+            }
+        </style>
     
 </head>
 <body>
-    <button onclick="regresar()">Regresar</button>
+    <div class="container">
+    
+    <button class="btn btn-dark" onclick="regresar()">Regresar</button>
+    <hr>
+
     <div>
         <form class="form" onsubmit="cargaMasiva(event)">
-            <input type="file" id="archivo" name="archivo">
+            <div class="custom-file">
+                <input class="custom-file-input" type="file" id="archivo" name="archivo">
+                <label class="custom-file-label" for="customFile">Selecciona el archivo</label>
+            </div>
             <div>
-                <button type="submit">Carga Masiva Alumnos</button>
+                <button class="btn btn-dark" type="submit">Carga Masiva Alumnos</button>
             </div>
 
         </form>
-        <button onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
+        <button class="btn btn-dark" onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
     </div>
+    <hr>
     <div id="ordenes">
         <h4>Elija tipo de recorrido</h4>
         <form class="form" onsubmit="cargarEstudiantes(event)">
-        <select id="recorrido">
+        <select class="custom-select col-11" id="recorrido">
             <option value="inOrder" selected>in Order</option>
             <option value="preOrder">pre Order</option>
             <option value="postOrder">post Order</option>
         </select>
-        <button type="submit">Mostrar</button>
+        <button class="btn btn-dark" type="submit">Mostrar</button>
     </form>
     </div>
     <div id="tablaEstu">
-        <table>
-            <thead>
+        <table class="table">
+            <thead class="thead-dark">
                 <tr>
                     <th>Carnet</th>
                     <th>Nombre</th>
@@ -47,8 +62,16 @@
 
     </div>
 
-    <button onclick="colocarGrafica()">Mostrar Grafica</button>
+    <hr>
+
+    <button class="btn btn-dark" onclick="colocarGrafica()">Mostrar Grafica</button>
     <img id="reporteAVL" >
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     
     <script src="js/estruc/arbolN.js"></script>

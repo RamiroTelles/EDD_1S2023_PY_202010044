@@ -109,9 +109,11 @@ class arbolN{
         let cod ="";
         if(padre!==null){
             for(let i=0;i<padre.hijos.length;i++){
-                cod+=`<div>
-                        <img src="./img/carpeta.png" width="40px" height="40px"/>
-                        <p class="h6 text-center">${padre.hijos[i].dato}</p>
+                cod+=`<div class="card" style="width: 8rem;">
+                        <img class="card-img-top" src="./img/carpeta.png"/>
+                        <div class="card-body">
+                            <p class="card-text" style="color: black;">${padre.hijos[i].dato}</p>
+                        </div>
                     </div>\n`;
             }
             if(padre.matriz==undefined || padre.matriz==null){
