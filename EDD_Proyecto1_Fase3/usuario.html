@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="./js/library/cycle.js"></script>
+
+        <script src="./js/library/cycle.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: #2b2b2b;
+                color: #fff;
+            }
+        </style>
+
+    </head>
+    <body>
+    <div class="container col-12">
+    
+        <button class="btn btn-dark" onclick="regresar()">Regresar</button>
+        <button class="btn btn-dark" onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
+        
+    
+    <div>
+        <div style="width: 400px;border: 1px; border-color: black;">
+            <hr>
+            <div class="form-group">
+            <form class="form" id="carpeta" name="carpeta" onsubmit="crearCarpeta(event)">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" id="nombreCarpeta" nombre="nombreCarpeta" type="text" placeholder="Nombre Carpeta">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-dark" type="submit">AgregarCarpeta</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+            <hr>
+            <div class="form-group">
+                <form id="carpetaE" name="carpetaE" onsubmit="eliminarCarp(event)">
+                    <div class="row">
+
+                        <div class="col">
+                        <input class="form-control" id="eliminarCarpeta" nombre="eliminarCarpeta" type="text"  placeholder="Nombre Carpeta">
+                        </div>
+                        <div class="col">
+                        <button class="btn btn-dark" type="submit">Eliminar Carpeta</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <hr>
+            <!-- <div>
+                <form class="form" id="ingresarArchivo" name="ingresarArchivo" onsubmit="agregarArchivo(event)">
+                    <p>Nombre Archivo</p>
+                    <input id="nombreArchivo" nombre="nombreArchivo" type="text" placeholder="Nombre Archivo">
+                    <input type="file" id="archivoEntrada" nombre="archivoEntrada"  accept="application/pdf, .txt, image/*">
+                    <div>
+                        <button type="submit">Agregar Archivo</button>
+                    </div>
+                    
+                </form>
+            </div> -->
+            <div class="form-group">
+                <form class="form" onsubmit="subirArchivo(event)">
+                    <input class="form-control"type="text" id="fileName" name="fileName" class="form-control mb-4" placeholder="Nombre de Archivos"/>
+                    <div class="custom-file">
+                        <input class="custom-file-input" type="file" id="file" name="file" class="form-control" accept="application/pdf, .txt, image/*">
+                        <label class="custom-file-label" for="customFile">Selecciona el archivo</label>
+                    </div>
+                    <div class="row col-4">
+                        <button  class="btn btn-dark" type="submit">Subir Archivo</button>
+                    </div>
+                </form>
+            </div>
+            <hr>
+
+            <div class="form-group">
+            <form class="form" id="archivoEs" name="archivoEs" onsubmit="eliminarArchivo(event)">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control col-12" id="eliminarArchivos" nombre="eliminarArchivos" type="text" placeholder="Nombre Archivo">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-dark" type="submit">Eliminar Archivo</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+
+
+            <hr>
+
+
+            <hr>
+        <div >
+            <form class="form" id="permisos" name="permisos" onsubmit="darPermisos(event)">
+                <input class="form-control" id="carnet" nombre="carnet" type="text" placeholder="Carnet">
+                <input class="form-control" id="nombreArchivoPer" nombre="nombreArchivoPer" type="text" placeholder="Nombre Archivo">
+                <input class="form-control" id="Tpermisos" nombre="Tpermisos" type="text" placeholder="Tipo de permisos">
+                <button class="btn btn-dark" type="submit">dar Permisos</button>
+            </form>
+            <hr>
+        </div>
+        <div class="form-group"style="width: 400px; height: 1000px;">
+            <form class="form" id="nav" name="nav" onsubmit="mostrarDir(event)">
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" id="directorio" nombre="directorio" type="text" value="/">
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-dark" type="submit">Mostrar Directorio</button>
+                    </div>
+                </div>
+            </form>
+            <div id="MostrarDirectorio" name="MostrarDirectorio">
+
+            </div>
+        </div>
+    </div>
+    <hr>
+    <h1 class="h1">Reportes</h1>
+    <div>
+        <button class="btn btn-dark" onclick="colocarGraficaArbolN()">Mostrar Grafica arbol N-ario</button>
+        <img id="reporteArbolN">
+    </div>
+
+    <div>
+        <button class="btn btn-dark" onclick="extraerMatriz()">Mostrar Grafica Matriz</button>
+        <img id="reporteMatriz" >
+    </div>
+    <div>
+        <button class="btn btn-dark" onclick="colocarGraficaLista()">Mostrar Grafica Log</button>
+        <img id="reporteLog" >
+    </div>
+
+  
+    </div>
+
+    <script src="js/estruc/arbolN.js"></script>
+    <script src="js/estruc/listaCircular.js"></script>
+    <script src="js/estruc/matrizD.js"></script>
+    <script src="js/estruc/estudiantes.js"></script>
+    <script src="js/estruc/avl.js"></script>
+    <script src="js/index.js"></script>
+    <script>inicioUsuario()</script>
+</body>
+</html>
