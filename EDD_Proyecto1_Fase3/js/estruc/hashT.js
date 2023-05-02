@@ -17,7 +17,7 @@ class hashT{
     }
 
     calIndice(carnet,contador){
-        debugger;
+        //debugger;
         let s_carnet = carnet.toString();
         let sum = 0;
         for (let i=0;i<s_carnet.length;i++){
@@ -50,6 +50,7 @@ class hashT{
     }
 
     aumentarTamano(){
+        //debugger;
         let nuevaCap = this.capacidad+1;
         while(!this.numeroPrimo(nuevaCap)){
             nuevaCap++;
@@ -72,5 +73,24 @@ class hashT{
           if (num % i === 0) {return false};
         }
         return true;
+    }
+
+    obtenerHTML(){
+        let datos="";
+
+        for(let i=0;i< this.table.length;i++){
+            if(this.table[i]!= null){
+                datos+=`
+                        <tr>
+                            <td> ${this.table[i].carnet} </td>
+                            <td> ${this.table[i].nombre} </td>
+                            <td> ${this.table[i].password} </td>
+                        </tr>
+                        `;
+            }
+            
+        }
+
+        return datos;
     }
 }

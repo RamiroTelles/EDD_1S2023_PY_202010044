@@ -197,6 +197,20 @@ class arbolAVL{
         return dato;
     }
 
+    inOrdenTablaHash(nodo,tabla){
+        //debugger;
+       
+        if (nodo.izq!== null){
+            this.inOrdenTablaHash(nodo.izq,tabla);
+        }
+       
+        tabla.insertar(nodo.dato);
+        if(nodo.der!== null){
+            this.inOrdenTablaHash(nodo.der,tabla);
+        }
+        
+    }
+
     postOrden(nodo){
         let dato ="";
         if (nodo.izq!== null){

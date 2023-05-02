@@ -30,8 +30,10 @@
             <div>
                 <button class="btn btn-dark" type="submit">Carga Masiva Alumnos</button>
             </div>
+           
 
         </form>
+        <button class="btn btn-dark" onclick="cargarTablaH()">Cargar a TablaHash</button>
         <button class="btn btn-dark" onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
     </div>
     <hr>
@@ -63,6 +65,26 @@
     </div>
 
     <hr>
+    <div id="ordenes2">
+        <h4>Tabla Hash</h4>
+        <button class="btn btn-dark" onclick="mostrarTablaH()">Mostrar</button>
+    </form>
+    </div>
+    <div id="tablaHashEstu">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Contra</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaHashEstu">
+
+            </tbody>
+        </table>
+
+    </div>
 
     <button class="btn btn-dark" onclick="colocarGrafica()">Mostrar Grafica</button>
     <img id="reporteAVL" >

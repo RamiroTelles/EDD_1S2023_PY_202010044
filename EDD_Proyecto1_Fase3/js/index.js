@@ -342,7 +342,15 @@ async function inicioUsuario(){
     //console.log(list);
 } 
 
+function cargarTablaH(){
+    arbolito.inOrdenTablaHash(arbolito.raiz,tablaHash);
+    console.log(tablaHash);
+}
 
+function mostrarTablaH(){
+    
+    document.getElementById("cuerpoTablaHashEstu").innerHTML = tablaHash.obtenerHTML();
+}
 
 const arbolito = new arbolAVL();
 
@@ -358,18 +366,18 @@ if(datos!=null){
 
 let tablaHash = new hashT();
 
-tablaHash.insertar(new estudiante("Hugo Rosal",8318054,"12341"));
-tablaHash.insertar(new estudiante("Luis Pirir",9616453,"12342"));
-tablaHash.insertar(new estudiante("Williams Constanza",199919737,"12343"));
-// tablaHash.insertar(new estudiante("Jim Melendez",200715321,"12344"));
-// tablaHash.insertar(new estudiante("William Ambrocio",201403669,"12345"));
-// tablaHash.insertar(new estudiante("Ebany Larios",201403877,"12346"));
-// tablaHash.insertar(new estudiante("Helber Urias",201404028,"12347"));
-// tablaHash.insertar(new estudiante("Manolo Ramirez",201503933,"12348"));
-// tablaHash.insertar(new estudiante("Jose Boguerin",201503933,"12349"));
-// tablaHash.insertar(new estudiante("Kevin Secaida",201602404,"123410"));
+//tablaHash.insertar(new estudiante("Hugo Rosal",8318054,"12341"));
+//tablaHash.insertar(new estudiante("Luis Pirir",9616453,"12342"));
+//tablaHash.insertar(new estudiante("Williams Constanza",199919737,"12343"));
+//tablaHash.insertar(new estudiante("Jim Melendez",200715321,"12344"));
+//tablaHash.insertar(new estudiante("William Ambrocio",201403669,"12345"));
+//tablaHash.insertar(new estudiante("Ebany Larios",201403877,"12346"));
+//tablaHash.insertar(new estudiante("Helber Urias",201404028,"12347"));
+//tablaHash.insertar(new estudiante("Manolo Ramirez",201503933,"12348"));
+//tablaHash.insertar(new estudiante("Jose Boguerin",201503933,"12349"));
+//tablaHash.insertar(new estudiante("Kevin Secaida",201602404,"123410"));
 
-console.log(tablaHash);
+
 //let a = new arbolN();
 //console.log(a);
 /* let usuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
