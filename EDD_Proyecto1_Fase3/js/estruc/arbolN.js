@@ -1,20 +1,23 @@
 class nodoAN{
-    constructor(dato,id){
+    constructor(dato,id,peso){
         this.dato = dato;
         this.matriz;
         this.hijos=[];
         this.id=id;
+        this.peso=peso;
     }
 }
 
 
 class arbolN{
     constructor(){
-        this.raiz = new nodoAN("/",0);
+        //debugger;
+        this.raiz = new nodoAN("/",0,1);
         this.cant =1;
     }
 
     agregarCarpeta(nombre,directorio){
+        //debugger;
         let padre = this.obtenerDirectorio(directorio);
         if (padre!==null){
             let copia;
@@ -26,7 +29,7 @@ class arbolN{
                 
                 copia = padre.hijos.find(elem => elem.dato ===nuevoNombre);
                 if(copia=== undefined || copia === null){
-                    padre.hijos.push(new nodoAN(nuevoNombre,this.cant));
+                    padre.hijos.push(new nodoAN(nuevoNombre,this.cant,(padre.peso+1)));
                     this.cant++;
                     return true;
                 }
@@ -69,9 +72,9 @@ class arbolN{
         let nodosT = await this.generarNodosGraf(this.raiz);
         let enlT = await this.generarEnlGraf(this.raiz);
         let dot = `digraph L{
-            node[shape=box];
+            node[shape=box];\nlayout=neato; \nedge[dir=none];\n
                         
-            label= "Arbol N-ario";\n`
+            label= "Grafo";\n`
         dot+= nodosT;
         dot+="\n";
         dot+=enlT;
@@ -98,7 +101,7 @@ class arbolN{
         
         for(let i =0;i<nodo.hijos.length;i++){
             enl+=this.generarEnlGraf(nodo.hijos[i]);
-            enl+=`n${nodo.id} -> n${nodo.hijos[i].id};\n`
+            enl+=`n${nodo.id} -> n${nodo.hijos[i].id} [label=\"${nodo.peso}\"];\n`
         }
         return enl;
     }

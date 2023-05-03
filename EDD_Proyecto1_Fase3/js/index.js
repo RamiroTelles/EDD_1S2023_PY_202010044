@@ -365,7 +365,7 @@ if(datos!=null){
 }
 
 let tablaHash = new hashT();
-
+console.log(arbolEne);
 //tablaHash.insertar(new estudiante("Hugo Rosal",8318054,"12341"));
 //tablaHash.insertar(new estudiante("Luis Pirir",9616453,"12342"));
 //tablaHash.insertar(new estudiante("Williams Constanza",199919737,"12343"));
