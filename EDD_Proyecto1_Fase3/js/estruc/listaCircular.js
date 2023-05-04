@@ -6,6 +6,18 @@ class nodoLista{
     }
 }
 
+class nodoArchivo{
+    constructor(propietario,destino,ruta,nombre,permisos,archivo){
+        this.propietario=propietario;
+        this.destino = destino;
+        this.ruta = ruta;
+        this.nombre = nombre;
+        this.permisos=permisos;
+        this.archivo=archivo;
+
+    }
+}
+
 class listaCicular{
     constructor(){
         this.cabecera = null;
@@ -92,5 +104,65 @@ class listaCicular{
         dot+="\n}";
         return dot;
 
+    }
+
+    htmlTodos(){
+        let datos="";
+
+        for(let i=0;i<this.cant;i++){
+            datos+=`
+            <tr>
+                <td> ${this.obtener(i).dato.propietario} </td>
+                <td> ${this.obtener(i).dato.destino} </td>
+                <td> ${this.obtener(i).dato.ruta} </td>
+                
+            `;
+
+            if(this.obtener(i).dato.archivo.type === 'text/plain'){
+                let txt = new Blob([this.obtener(i).dato.archivo.content], {type: this.obtener(i).dato.archivo.type});
+                const url = URL.createObjectURL(txt);
+                datos += `
+                        <td>
+                                <a href="${url}" download>
+                                    ${this.obtener(i).dato.archivo.name}
+                                </a>
+                        </td>`;
+            }else{
+                datos += ` <td>
+                                <a href="${this.obtener(i).dato.archivo.content}" download>
+                                    ${this.obtener(i).dato.archivo.name}
+                                </a>
+                        </td>`;
+            }
+            datos+=`
+                <td> ${this.obtener(i).dato.permisos} </td>
+            </tr>`;
+        }
+        return datos;
+    }
+
+    htmlUsuario(carnet){
+        //debugger;
+        let cod="";
+        for(let i=0;i<this.cant;i++){
+            if(this.obtener(i).dato.destino === carnet){
+                if(this.obtener(i).dato.archivo.type==="application/pdf"){
+                    cod+=`<p>${this.obtener(i).dato.archivo.name}</p>
+                    
+                    <iframe src="${this.obtener(i).dato.archivo.content}" width="400" height="300">
+                    
+                  </iframe>
+                  `;
+                }else if(this.obtener(i).dato.archivo.type==="text/plain"){
+                 cod+=`<p>${this.obtener(i).dato.archivo.name}</p>
+                 <textarea class="form-control">${this.obtener(i).dato.archivo.content}</textarea>\n`;
+                }else{
+                    cod+=`<p>${this.obtener(i).dato.archivo.name}</p>
+                    <img src="${this.obtener(i).dato.archivo.content}" class="img-thumbnail">\n`;
+                }
+            }
+        }
+
+        return cod;
     }
 }

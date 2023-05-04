@@ -11,11 +11,25 @@ function darPermisos(e){
     let nombre = document.getElementById("nombreArchivoPer").value;
     let dir = document.getElementById("directorio").value;
     let carnet = document.getElementById("carnet").value;
-    let permisos = document.getElementById("Tpermisos").value;
-    let carnetUsuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
-    arbolEne.insertarPer(dir,carnet,permisos,nombre,carnetUsuario);
     
 
+    let permisos = document.getElementById("Tpermisos").value;
+    let carnetUsuario = parseInt(JSON.parse(localStorage.getItem("CurrentStudent")));
+
+    let n_carnet = parseInt(carnet);
+    let existe = arbolito.buscar(n_carnet);
+    if(existe!==null){
+        arbolEne.insertarPer(dir,carnet,permisos,nombre,carnetUsuario);
+        let archivo = arbolEne.obtenerArchivo(nombre,dir,carnetUsuario);
+        if(archivo!=null){
+            archivosC.insertar(new nodoArchivo(carnetUsuario,carnet,dir,nombre,permisos,archivo));
+            console.log(archivosC);
+            alert("Permisos Agregados");
+        }
+    }else{
+        alert("Carnet inválido");
+    }
+    
 }
 
 function eliminarArchivo(e){
@@ -247,6 +261,7 @@ async function cargaMasiva(e){
 
 function cargarLocalStorage(){
     localStorage.setItem("arbolAVL",JSON.stringify(JSON.decycle(arbolito)));
+    localStorage.setItem("archivosC",JSON.stringify(JSON.decycle(archivosC)));
     //localStorage.setItem("matriz", JSON.stringify(JSON.decycle(matrix)));
 }
 
@@ -352,11 +367,34 @@ function mostrarTablaH(){
     document.getElementById("cuerpoTablaHashEstu").innerHTML = tablaHash.obtenerHTML();
 }
 
+function mostrarArchivosAdmin(){
+    if(archivosC.cant!=0){
+        document.getElementById("cuerpoTablaArchivosAdmin").innerHTML = archivosC.htmlTodos();
+    }else{
+        alert("No se han encontrado archivos compartidos");
+    }
+    
+}
+
+function mostrarArchivosCompartidosUsuario(){
+    let usuario = JSON.parse(localStorage.getItem("CurrentStudent"));
+    document.getElementById("MostrarArchivosCompartidos").innerHTML = archivosC.htmlUsuario(usuario);
+}
+
+//funciones chat
+
+function irChat(){
+    console.log("Redirigir al chat");
+}
+
 const arbolito = new arbolAVL();
 
 let arbolEne = new arbolN();
 let list= new listaCicular();
 let datos = JSON.retrocycle(JSON.parse(localStorage.getItem("arbolAVL")));
+
+let datosArchivos = JSON.retrocycle(JSON.parse(localStorage.getItem("archivosC")));
+let archivosC = new listaCicular();
 //console.log(JSON.parse(datos));
 
 if(datos!=null){
@@ -364,8 +402,19 @@ if(datos!=null){
     console.log(arbolito);
 }
 
+if(datosArchivos!=null){
+    archivosC.cabecera = datosArchivos.cabecera;
+    archivosC.cant = datosArchivos.cant;
+    console.log(archivosC);
+}
+
 let tablaHash = new hashT();
-console.log(arbolEne);
+
+
+//archivosC.insertar(new nodoArchivo(200715321,9616453,"/","pedeefe","r,w","valina"));
+//archivosC.insertar(new nodoArchivo(8318054,9616453,"/","pedeefe2","r,w","vallina"));
+//archivosC.insertar(new nodoArchivo(201503933,201403669,"/","pedeefe3","r,w","Vallinato"));
+//console.log(archivosC);
 //tablaHash.insertar(new estudiante("Hugo Rosal",8318054,"12341"));
 //tablaHash.insertar(new estudiante("Luis Pirir",9616453,"12342"));
 //tablaHash.insertar(new estudiante("Williams Constanza",199919737,"12343"));

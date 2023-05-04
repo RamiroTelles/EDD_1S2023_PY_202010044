@@ -120,6 +120,27 @@ class matrisDispersa{
 
     }
 
+    obtenerArchivo(archivo){
+           //Encontrar carnet en la cabecera
+           let temp = this.raiz;
+
+          
+   
+           //Encuentra el archivo
+           while(temp.down!==null && temp.down.dato.name!==archivo){
+               temp = temp.down;
+           }
+   
+           if(temp.down===null){
+               console.log("Archivo no encontrado");
+               alert("Archivo no encontrado")
+               return null;
+           }else{
+               return temp.down.dato;
+           }
+          
+    }
+
     insertarNodoConxy(x,y,nodo){
         //debugger;
         let temp = x;

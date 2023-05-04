@@ -201,6 +201,26 @@ class arbolN{
         }
     }
 
+    obtenerArchivo(archivo,dir,carnet){
+        let padre = this.obtenerDirectorio(dir);
+        if(padre!==null){
+            if(padre.matriz==undefined || padre.matriz==null){
+                padre.matriz = new matrisDispersa(carnet);
+                return null;
+            }else{
+                let nuevaMatriz = new matrisDispersa(carnet);
+                nuevaMatriz.raiz = padre.matriz.raiz;
+                let content = nuevaMatriz.obtenerArchivo(archivo);
+                return content;
+            }
+
+        }else{
+            alert("Directorio erróneo")
+            return null;
+        }
+
+    }
+
     eliminarArchivo(dir,archivo,carnet){
         let padre = this.obtenerDirectorio(dir);
         if(padre!==null){
