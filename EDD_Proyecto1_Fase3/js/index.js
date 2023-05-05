@@ -387,6 +387,19 @@ function irChat(){
     console.log("Redirigir al chat");
 }
 
+
+async function encriptarSHA256(block){
+    
+    // OBTENER LOS BYTES DEL STRING 
+    let bytes = new TextEncoder().encode(block);
+    // OBTENER BYTES DEL HASH
+    let hashBytes = await window.crypto.subtle.digest("SHA-256", bytes);
+    // PASAR EL HASH A STRING 
+    let hash = Array.prototype.map.call(new Uint8Array(hashBytes), x => ('00' + x.toString(16)).slice(-2)).join('');
+    // RETORNAR EL HASH
+    return hash;
+}
+
 const arbolito = new arbolAVL();
 
 let arbolEne = new arbolN();
@@ -399,16 +412,26 @@ let archivosC = new listaCicular();
 
 if(datos!=null){
     arbolito.raiz = datos.raiz;
-    console.log(arbolito);
+    //console.log(arbolito);
 }
 
 if(datosArchivos!=null){
     archivosC.cabecera = datosArchivos.cabecera;
     archivosC.cant = datosArchivos.cant;
-    console.log(archivosC);
+    //console.log(archivosC);
 }
 
 let tablaHash = new hashT();
+
+let bloqueEncadenado = new blockC();
+
+bloqueEncadenado.insertar("hoy",200715321,9616453,"quiobo");
+bloqueEncadenado.insertar("ater",8318054,9616453,"quiobo2");
+bloqueEncadenado.insertar("antier",200715321,9616453,"quiobo3");
+bloqueEncadenado.insertar("masocanto",201403669,201403877,"quiobo4");
+bloqueEncadenado.insertar("vagina",200715321,9616453,"quiobo5");
+
+console.log(bloqueEncadenado);
 
 
 //archivosC.insertar(new nodoArchivo(200715321,9616453,"/","pedeefe","r,w","valina"));
