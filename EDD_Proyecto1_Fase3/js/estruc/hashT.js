@@ -75,7 +75,7 @@ class hashT{
         return true;
     }
 
-    obtenerHTML(){
+    async obtenerHTML(){
         let datos="";
 
         for(let i=0;i< this.table.length;i++){
@@ -84,13 +84,40 @@ class hashT{
                         <tr>
                             <td> ${this.table[i].carnet} </td>
                             <td> ${this.table[i].nombre} </td>
-                            <td> ${this.table[i].password} </td>
+                            <td> ${await this.encriptarSha(this.table[i].password)} </td>
                         </tr>
                         `;
             }
             
         }
 
+        return datos;
+    }
+
+    async encriptarSha(block){
+    
+        // OBTENER LOS BYTES DEL STRING 
+        let bytes = new TextEncoder().encode(block);
+        // OBTENER BYTES DEL HASH
+        let hashBytes = await window.crypto.subtle.digest("SHA-256", bytes);
+        // PASAR EL HASH A STRING 
+        let hash = Array.prototype.map.call(new Uint8Array(hashBytes), x => ('00' + x.toString(16)).slice(-2)).join('');
+        // RETORNAR EL HASH
+        return hash;
+    }
+
+    llenarSelect(){
+        //debugger;
+        //<option value="">--Seleccionar--</option>
+        let datos="";
+
+        for(let i=0;i< this.table.length;i++){
+            if(this.table[i]!= null){
+                datos+=`
+                <option value="${this.table[i].carnet}">${this.table[i].carnet}</option>
+                `;
+            }
+        }
         return datos;
     }
 }

@@ -306,8 +306,9 @@ function cargarEstudiantes(e){
     
 }
 
-function mostrarInOrder(){
-    document.getElementById("cuerpoTablaEstu").innerHTML = arbolito.inOrden(arbolito.raiz);
+async function mostrarInOrder(){
+    //let contenido = await arbolito.inOrden(arbolito.inOrden(arbolito.raiz));
+    document.getElementById("cuerpoTablaEstu").innerHTML = await arbolito.inOrden(arbolito.raiz);
 }
 
 function mostrarPreOrder(){
@@ -359,12 +360,12 @@ async function inicioUsuario(){
 
 function cargarTablaH(){
     arbolito.inOrdenTablaHash(arbolito.raiz,tablaHash);
-    console.log(tablaHash);
+    //console.log(tablaHash);
 }
 
-function mostrarTablaH(){
-    
-    document.getElementById("cuerpoTablaHashEstu").innerHTML = tablaHash.obtenerHTML();
+async function mostrarTablaH(){
+
+    document.getElementById("cuerpoTablaHashEstu").innerHTML = await tablaHash.obtenerHTML();
 }
 
 function mostrarArchivosAdmin(){
@@ -400,6 +401,91 @@ async function encriptarSHA256(block){
     return hash;
 }
 
+function inicializarChat(){
+    let label = document.getElementById("emisor");
+    
+    if(label!==null){
+        label.innerHTML = JSON.parse(localStorage.getItem("CurrentStudent"));
+        cargarTablaH();
+        document.getElementById("receiver").innerHTML = tablaHash.llenarSelect();
+    }
+}
+
+function enviarMensaje(){
+    let rec= document.getElementById("receiver").value;
+    //console.log(rec);
+    let usuario = JSON.parse(localStorage.getItem("CurrentStudent"));
+    //console.log(usuario);
+    let fecha = obtenerFecha();
+    //console.log(fecha);
+    let message = document.getElementById("msg-transmitter").value;
+    //console.log(message);
+    if(message!=""){
+        bloqueEncadenado.insertar(fecha,usuario,rec,message);
+    }else{
+        alert("Escriba el mensaje a enviar");
+    }
+    
+    actualizarChat();
+    console.log(bloqueEncadenado);
+}
+
+function actualizarChat(){
+    let usuario = JSON.parse(localStorage.getItem("CurrentStudent"));
+    let rec= document.getElementById("receiver").value;
+    let codigo = bloqueEncadenado.obtenerChat(usuario,rec);
+    document.getElementById("transmitter-chat").innerHTML = codigo;
+    document.getElementById("receiver-chat").innerHTML =bloqueEncadenado.obtenerChat(rec,usuario);
+    localStorage.setItem("blockChain",JSON.stringify(JSON.decycle(bloqueEncadenado)));
+}
+
+function obtenerFecha(){
+    let timestamp = new Date();
+    let day = timestamp.getDate();
+    let month = timestamp.getMonth();
+    let year = timestamp.getFullYear();
+    let hours = timestamp.getHours();
+    let min = timestamp.getMinutes();
+    let sec = timestamp.getSeconds();
+    return `${day}-${month}-${year} :: ${hours}:${min}:${sec}`;
+}
+
+function regresarUsuario(){
+    window.location="usuario.html"
+}
+
+function irChat(){
+    window.location="chat.html"
+}
+
+async function colocarReporteBLockChain(){
+    
+    dot = await bloqueEncadenado.graficarBlock();
+    let url = 'https://quickchart.io/graphviz?graph=';
+    let img = document.getElementById("reporteBlockChain");
+    img.setAttribute("src",url+dot);
+    //document.getElementById("reporteBlockChain").setAttribute("src",)
+}
+
+
+async function mostrarBloqueBlockChain(num){
+    if(num>0){
+        contadorBlockChain++;
+        
+    }else{
+        contadorBlockChain--;
+    }
+
+    if(contadorBlockChain=>0 && contadorBlockChain<bloqueEncadenado.cant){
+        let txt = await bloqueEncadenado.obtenerTxt(contadorBlockChain);
+        document.getElementById("bloqueBlockChain").innerHTML= txt;
+    }else{
+        alert("posicion nó válida");
+        contadorBlockChain=0;
+    }
+}
+
+let contadorBlockChain=-1;
 const arbolito = new arbolAVL();
 
 let arbolEne = new arbolN();
@@ -425,13 +511,25 @@ let tablaHash = new hashT();
 
 let bloqueEncadenado = new blockC();
 
-bloqueEncadenado.insertar("hoy",200715321,9616453,"quiobo");
-bloqueEncadenado.insertar("ater",8318054,9616453,"quiobo2");
-bloqueEncadenado.insertar("antier",200715321,9616453,"quiobo3");
-bloqueEncadenado.insertar("masocanto",201403669,201403877,"quiobo4");
-bloqueEncadenado.insertar("vagina",200715321,9616453,"quiobo5");
+let datosBlock = JSON.retrocycle(JSON.parse(localStorage.getItem("blockChain")));
 
-console.log(bloqueEncadenado);
+if(datosBlock!=null){
+    bloqueEncadenado.raiz = datosBlock.raiz;
+    bloqueEncadenado.cola = datosBlock.cola;
+    bloqueEncadenado.cant = datosBlock.cant;
+    bloqueEncadenado.reCalcularHashes();
+    console.log(bloqueEncadenado);
+}
+
+
+/* bloqueEncadenado.insertar("hoy","200715321","9616453","quiobo");
+bloqueEncadenado.insertar("ater","8318054","9616453","quiobo2");
+bloqueEncadenado.insertar("antier","200715321","9616453","quiobo3");
+bloqueEncadenado.insertar("masocanto","201403669","201403877","quiobo4");
+bloqueEncadenado.insertar("vagina","200715321","9616453","quiobo5");
+
+console.log(bloqueEncadenado); */
+inicializarChat();
 
 
 //archivosC.insertar(new nodoArchivo(200715321,9616453,"/","pedeefe","r,w","valina"));

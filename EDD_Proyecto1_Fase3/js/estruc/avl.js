@@ -178,21 +178,21 @@ class arbolAVL{
         return dato;
     }
 
-    inOrden(nodo){
+     async inOrden(nodo){
         let dato ="";
         if (nodo.izq!== null){
-            dato+= this.inOrden(nodo.izq);
+            dato+= await this.inOrden(nodo.izq);
         }
         dato +=`
                 <tr>
                     <td> ${nodo.dato.carnet} </td>
                     <td> ${nodo.dato.nombre} </td>
-                    <td> ${nodo.dato.password} </td>
+                    <td> ${ await this.encriptarSHA256(nodo.dato.password)} </td>
                 </tr>
                 `;
         
         if(nodo.der!== null){
-            dato+= this.inOrden(nodo.der);
+            dato+= await this.inOrden(nodo.der);
         }
         return dato;
     }
@@ -209,6 +209,18 @@ class arbolAVL{
             this.inOrdenTablaHash(nodo.der,tabla);
         }
         
+    }
+
+    async encriptarSHA256(block){
+    
+        // OBTENER LOS BYTES DEL STRING 
+        let bytes = new TextEncoder().encode(block);
+        // OBTENER BYTES DEL HASH
+        let hashBytes = await window.crypto.subtle.digest("SHA-256", bytes);
+        // PASAR EL HASH A STRING 
+        let hash = Array.prototype.map.call(new Uint8Array(hashBytes), x => ('00' + x.toString(16)).slice(-2)).join('');
+        // RETORNAR EL HASH
+        return hash;
     }
 
     postOrden(nodo){

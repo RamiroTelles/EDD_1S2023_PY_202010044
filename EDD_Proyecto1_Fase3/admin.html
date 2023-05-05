@@ -110,9 +110,16 @@
         </table>
 
     </div>
+    <div id="reporteIndivBlock">
+        <button class="btn btn-dark" onclick="mostrarBloqueBlockChain(-1)">Anterior</button>
+        <button class="btn btn-dark" onclick="mostrarBloqueBlockChain(1)">Siguiente</button>
+        <textarea id="bloqueBlockChain" cols="50" readonly></textarea>
+    </div>
 
     <button class="btn btn-dark" onclick="colocarGrafica()">Mostrar Grafica</button>
     <img id="reporteAVL" >
+    <button class="btn btn-dark" onclick="colocarReporteBLockChain()">Mostrar Reporte BlockChain</button>
+    <img id="reporteBlockChain" >
 
 </div>
 
