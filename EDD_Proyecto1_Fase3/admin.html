@@ -1,0 +1,143 @@
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script src="./js/library/cycle.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <style>
+            body{
+                background-color: #2b2b2b;
+                color: #fff;
+            }
+        </style>
+    
+</head>
+<body>
+    <div class="container">
+    
+    <button class="btn btn-dark" onclick="regresar()">Regresar</button>
+    <hr>
+
+    <div>
+        <form class="form" onsubmit="cargaMasiva(event)">
+            <div class="custom-file">
+                <input class="custom-file-input" type="file" id="archivo" name="archivo">
+                <label class="custom-file-label" for="customFile">Selecciona el archivo</label>
+            </div>
+            <div>
+                <button class="btn btn-dark" type="submit">Carga Masiva Alumnos</button>
+            </div>
+           
+
+        </form>
+        <button class="btn btn-dark" onclick="cargarTablaH()">Cargar a TablaHash</button>
+        <button class="btn btn-dark" onclick="cargarLocalStorage()">Cargar a cargarLocalStorage</button>
+    </div>
+    <hr>
+    <div id="ordenes">
+        <h4>Elija tipo de recorrido</h4>
+        <form class="form" onsubmit="cargarEstudiantes(event)">
+        <select class="custom-select col-11" id="recorrido">
+            <option value="inOrder" selected>in Order</option>
+            <option value="preOrder">pre Order</option>
+            <option value="postOrder">post Order</option>
+        </select>
+        <button class="btn btn-dark" type="submit">Mostrar</button>
+    </form>
+    </div>
+    <div id="tablaEstu">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Contra</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaEstu">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <hr>
+    <div id="ordenes2">
+        <h4>Tabla Hash</h4>
+        <button class="btn btn-dark" onclick="mostrarTablaH()">Mostrar</button>
+    
+    </div>
+    <div id="tablaHashEstu">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Carnet</th>
+                    <th>Nombre</th>
+                    <th>Contra</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaHashEstu">
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <hr>
+    <div id="archivosCompartidos">
+        <h4>Archivos Compartidos</h4>
+        <button class="btn btn-dark" onclick="mostrarArchivosAdmin()">Mostrar</button>
+    
+    </div>
+    <div id="tablaArchivosAdmin">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Propietario</th>
+                    <th>Destino</th>
+                    <th>Ruta</th>
+                    <th>Nombre Archivo</th>
+                    
+                    <th>Permisos</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpoTablaArchivosAdmin">
+
+            </tbody>
+        </table>
+
+    </div>
+    <div id="reporteIndivBlock">
+        <button class="btn btn-dark" onclick="mostrarBloqueBlockChain(-1)">Anterior</button>
+        <button class="btn btn-dark" onclick="mostrarBloqueBlockChain(1)">Siguiente</button>
+        <textarea id="bloqueBlockChain" cols="50" readonly></textarea>
+    </div>
+
+    <button class="btn btn-dark" onclick="colocarGrafica()">Mostrar Grafica</button>
+    <img id="reporteAVL" >
+    <button class="btn btn-dark" onclick="colocarReporteBLockChain()">Mostrar Reporte BlockChain</button>
+    <img id="reporteBlockChain" >
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+    
+    <script src="js/estruc/blockChain.js"></script>
+    <script src="js/estruc/arbolN.js"></script>
+    <script src="js/estruc/listaCircular.js"></script>
+    <script src="js/estruc/matrizD.js"></script>
+    <script src="js/estruc/estudiantes.js"></script>
+    <script src="js/estruc/avl.js"></script>
+    <script src="js/estruc/hashT.js"></script>
+    <script src="js/index.js"></script>
+    
+</body>
+
+</html>
