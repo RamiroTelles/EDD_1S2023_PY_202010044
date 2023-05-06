@@ -19,21 +19,23 @@ Esta Página es un lugar para almacenar archivos importantes hecha para la Facul
 ## Login
 Este tiene Un Login en el que tendrán que usar su carnet como usuario he ingresar su contraseña para ingresar.
 También se puede acceder a las funciones de admin si se usa como usuario admin y contraseña admin
+![Imagen Login](./imgenesRead/login.PNG)
 
 ## Interfaz Admin
 
-En esta es posible hacer la carga de usuarios masiva con un archivo Json, también es posible visualizar los alumnos cargados en una tabla y en una gráfica hecha con graphviz.
+En esta es posible hacer la carga de usuarios masiva con un archivo Json, también es posible visualizar los alumnos cargados en una tablaHash, asi como los reportes de archivos compartidos y de Mensajes enviados entre Usuarios.
+![Imagen Admin](./imgenesRead/admin.PNG)
+
+
 
 ## Interfaz Usuario
 
-En este apartado el usuario podrá modificar su carpeta raíz en la cual podrá añadir todos los archivos de imagen, pdfs y txts que necesite, también es posible que este los pueda ordenar por carpetas.
+En este Aparatado el usuario es capaz de crear y eliminar distintos folderes, asi mismo con archivos; también esta la opción de compartir archivos a otros usuarios.
+![Imagen Usuario1](./imgenesRead/Usuario1.PNG)
 
-En este apartado el usuario podrá navegar por su directorio con la barra de navegación y el botón mostrar directorio, también es capaz de crear y eliminar carpetas en el directorio que se encuentra actualmente. El usuario también será capaz de subir y eliminar archivos en el que se encuentra actualmente, y también dar permisos a otros usuarios para que puedan ver sus archivos. 
+En usuario También tiene la Posibilidad de ver los archivos que se le han compartido, y acceso a un chat con el que puede chatear con otros usuarios.
 
-Los permisos son **r** de solo leer, **w** de solo escribir, y **r,w** de leer y escribir.
-
-El usuario también será capaz de ver el cómo están distribuidas sus carpetas, los permisos otorgados de sus archivos en la carpeta actual y una bitácora de lo que há hecho de forma gráfica con graphviz.
-
+![Imagen Usuario2](./imgenesRead/Usuario2.PNG)
 
 # Manual Técnico
 
@@ -182,4 +184,83 @@ Métodos:
 * **agregarArchivo(String,Object,number)**->Boolean:
 * **eliminarArchivo(String,String,number)**->Boolean:
 * **insertarPer(String,Number,String,String,Number)**->Boolean:
+
+### Clase hashT
+
+Esta es la clase de una lista Hash que la formula que usa es convirtiendo cada caracter en codigo asci y los suma, para luego usar el módulo de la capacidad de la tabla. Para coliciones, la lista usa un direccionamiento abierto por Salto al cuadrado.
+
+Atributos:
+---------
+* table ->Array(7)
+* capacidad->Number
+* cantDatos-> Number
+
+Métodos:
+---------
+* **insertar(Object)**
+* **calIndice(Number,number)**->Number:
+* **divisionEntera(Number,Number)**->Number:
+* **aumentarTamano()**
+* **numeroPrimo(Number)**->Boolean:
+* **obtenerHTML**->String:
+* **encriptarSha(String)**->String:
+* **llenarSelect**->String:
+
+### Clase hashT
+
+Esta es la clase de una lista Hash que la formula que usa es convirtiendo cada caracter en codigo asci y los suma, para luego usar el módulo de la capacidad de la tabla. Para coliciones, la lista usa un direccionamiento abierto por Salto al cuadrado. En esta tabla, al mostrarla en pantalla, se encriptan las contraseñas en SHA256 para más seguridad.
+
+Atributos:
+---------
+* table ->Array(7)
+* capacidad->Number
+* cantDatos-> Number
+
+Métodos:
+---------
+* **insertar(Object)**
+* **calIndice(Number,number)**->Number:
+* **divisionEntera(Number,Number)**->Number:
+* **aumentarTamano()**
+* **numeroPrimo(Number)**->Boolean:
+* **obtenerHTML**->String:
+* **encriptarSha(String)**->String:
+* **llenarSelect**->String:
+
+
+### Clase nodoB
+Esta Clase es un nodo base el cual se usa en el sistema BlockChain. El Hash se encripta en SHA256.
+
+Atributos:
+---------
+* index-> Number
+* timeStamp -> String
+* transmitter-> String
+* receiver->String
+* message->String
+* prevHash->String
+* hash-> String
+
+### BlockC
+
+Esta es la clase que se encarga de el control del sistema BlockChain, usando los nodos B. 
+
+
+Atributos:
+---------
+* raiz ->Object
+* cola->Object
+* cant-> Number
+
+Métodos:
+---------
+* **insertar(String,String,String)**
+* **obtener(Number)**->Object:
+* **obtenerUltimoHash()**->String:
+* **getSha256(string)**->String
+* **obtenerChat(String,String)**->String:
+* **graficarBlock()**->String:
+* **reCalcularHashes()**:
+* **obtenerTxt(Number)**->String:
+
 
